@@ -1,1 +1,1 @@
-# Web1_Strippgen
+# Medientechnologien Mixdorf
