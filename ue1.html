@@ -19,11 +19,21 @@
 </iframe>
 
 <h2>&Uuml;bung 1</h2>
-<br><h3>Aufgabe 1 - 1.1</h3>
 
-<br><p>Musikaufnahme</p>
-<audio controls><source src="./audio/musik_mono.wav" type="audio/wav"></audio>
-<p>Bescheibung:</p>
+<h3>Aufgabe 1</h3>
+<p>1.a) Musikaufnahmen 16bit Aufl&ouml;sung:</p>
+        <br>
+        Musik_44,1kHz_stero 
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        Sprache_8kHz_mono
+</p>
+<audio controls><source src="./audio/Musik_06.wav" type="audio/wav"></audio>
+<audio controls><source src="./audio/Sprache_06.wav" type="audio/wav"></audio>
+<br><br>
+<p>1.b) Bescheibung zu unterschiedlichen Abtastfrequenzen:</p>
 <p>Die Abtastfrequenzen sind unterschiedlich, da die Musikdatei verglichen mit der reinen Sprachdatei ein gr&ouml;ßeres Spektrum besitzt <br> und so bsw. mehr Frequenzhöhen und Frequenztiefen abgebildet werden k&ouml;nnen.
  <br>
  Der Mensch kann Frequenzen bis ca. 20kHz wahrnehmen. <br> Aus dem Grund werden Audioaufnahmen mit 44.1kHz bzw. 48kHz abgetastet. 
@@ -31,8 +41,21 @@
  F&uuml;r die Sprahce hingegen ist eine Abtastfrequenzen von 8khz ausreichend.  
 </p>
 
-<br><h3>Aufgabe 1 - 1.2</h3>
-<p>Loesung</p>
+<p>1.c) Headerangaben</p>
+<p>Beschreibung der Headerangaben:
+        <br>- Channels: wie viele Kan&auml;le (Mono=1Kanal, Stero=2Kan&auml;le)
+        <br>- Sample Rate: wie oft wird der Audio-Pegel in einer Sekunde erfasst
+        <br>- Valid Bits: wie viel Speicher f&uml;r einen Sample-Wert genutzt werden kann
+        <br>- Bytes per sample : Speicher pro Sample in Byte (1 Byte = 8 Bit)
+</p>
+<p> >>>>>>>Screenshots der Consolen-Ausgaben hier einfügen<<<<< </p>
+
+<p>1.d) Bitratenberechnung
+        <br>(Bitrate = Kan&auml;le x Samplerate x Aufl&ouml;sung)
+</p>
+<p>-F&uuml;r Musik_06.wav : 2 KanÃ¤le x 16 Bit x 44,1 kHz = 1411,2 kBit/s
+        <br>-F&uuml;r Sprache_06.wav : 1 Kanal x 16Bit x 8 kHz = 128 kBit/s</p>
+
 
 <br><h3>Aufgabe 2 - 2.1</h3>
 <br><p>Rauschen</p>
