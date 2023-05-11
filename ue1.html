@@ -21,7 +21,7 @@
 <h2>&Uuml;bung 1</h2>
 
 <h3>Aufgabe 1</h3>
-<p>1.a) Musikaufnahmen 16bit Aufl&ouml;sung:</p>
+<p>1.a) Musikaufnahmen 16bit Aufl&ouml;sung:
         <br>
         Musik_44,1kHz_stero 
         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
@@ -49,25 +49,12 @@
         <br>- Valid Bits: wie viel Speicher f&uml;r einen Sample-Wert genutzt werden kann
         <br>- Bytes per sample : Speicher pro Sample in Byte (1 Byte = 8 Bit)
 </p>
-<div>
-        <img-wrapper>
-        <div>
-                <img src="./pics/screen_musik_06.png" aria-label="Headerangaben Musik_06" alt="Musik_06" width="175" height="150">
-                <span>Headerangaben Musik_06</span>
-        </div>
-        <div>
-                <img src="./pics/screen_sound_06.png" aria-label="Headerangaben Sound_06" alt="Sound_06" width="175" height="150"></td>
-                <span>Headerangaben Sound_06</span>
-        </div>
-        </img-wrapper>
-</div>
-<!--
-<td><img src="./pics/screen_musik_06.png" aria-label="Headerangaben Musik_06" alt="Musik_06" width="175" height="150"></td>
-<span>Headerangaben Musik_06</span>
-<td><img src="./pics/screen_sound_06.png" aria-label="Headerangaben Sound_06" alt="Sound_06" width="175" height="150"></td>
-<span>Headerangaben Sound_06</span>
 
--->
+<td><img src="./pics/screen_musik_06.png" aria-label="Headerangaben Musik_06" alt="Musik_06" width="200" height="150"></td>
+<!-- <span>Headerangaben Musik_06</span> -->
+<td><img src="./pics/screen_sound_06.png" aria-label="Headerangaben Sound_06" alt="Sound_06" width="200" height="150"></td>
+<!-- <span>Headerangaben Sound_06</span> -->
+
 <p>1.d) Bitratenberechnung
         <br>(Bitrate = Kan&auml;le x Samplerate x Aufl&ouml;sung)
 </p>
@@ -75,17 +62,86 @@
         <br>-F&uuml;r Sprache_06.wav : 1 Kanal x 16Bit x 8 kHz = 128 kBit/s</p>
 
 
-<br><h3>Aufgabe 2 - 2.1</h3>
-<br><p>Rauschen</p>
-<audio controls><source src="./audio/rauschen.wav" type="audio/wav"></audio>
-<p>Bescheibung</p>
-<p>Loesung</p>
+<br><h3>Aufgabe 2</h3>
+<p>2.a) Samples der Sinusdateien lesbar machen (ASCII-Datei)</p>
+<p>Sinusdateien : 
+<br>
+sine_hi03.wav
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+sine_lo05.wav
+</p>
+<audio controls><source src="./audio/sine_hi03.wav" type="audio/wav"></audio>
+<audio controls><source src="./audio/sine_lo05.wav" type="audio/wav"></audio>
+<br>
+<p>Samling-Frequenz: 16 kHz</p>
+<p>resultierenden Zahlenfolgen aus der ASCII-Datei</p>
+<!--  BItte die Screens per Namenskonvention in den ordner packen !!!!!!!!!!!!!!!!!!!!!
 
-<br><h3>Aufgabe 2 - 2.2</h3>
-<p>Loesung</p>
+<img src="./pics/screen_sine_hi03_ascii.png"  alt="Musik_06" width="200" height="150">
+<img src="./pics/screen_sine_lo05_ascii.png"  alt="Musik_06" width="200" height="150">
 
-<br><h3>Aufgabe 2 - 2.3</h3>
-<p>Loesung</p>
+-->
+<p>Bestimmung der Frequenz der Sinus-Schwingungen.</p>
+<p>
+        Um die Frequenz abzulesen muss man die Amplitude ermitteln.
+        16.300 ist ca der groesste Wert und muss daher die Amplitude sein.
+        Jeder Wert in der Datei ist ein Sample also ist die Schwingungsdauer von einer Amplitude zur naechsten.
+        Da das Sample 10.394 zweimal hintereinander folgt ist davon auszugehen, dass die Amplitude genau zwischen diesen beiden Werten liegt.
+        Zaehlt man nun die Samles von einer zur naechsten Amplitude kommt man auf 3,5.
+        16.000 / 3,5 = 4571
+        Damit liegt die Frequenz der sine_hi01 bei ca. 4,5 kHz.
+        Das ganze Analog zur sine_lo03:
+        Von Sample 16.000 bis 16.000 zaehlt man 5 Samples.
+        16.000 / 5 = 3.200
+        Damit liegt die Frequenz der sine_hi03 bei ca 3.200 kHz.     
+</p>
+
+<p>2.b) Überprüfung der Sch&auml;tzung aus 2a mit GRAM(Spektralanalyse-Tool)</p>
+<p>Einstellungen Gram: Freq Scale: Linear, FFT Size: 512, Time scale: 1msec</p>
+<!--  BItte die Screens per Namenskonvention in den ordner packen !!!!!!!!!!!!!!!!!!!!!
+
+<img src="./pics/screen_sine_hi03_gram.png"  alt="hi03" width="200" height="150">
+<img src="./pics/screen_sine_lo05_gram.png"  alt="lo05" width="200" height="150">
+
+-->
+<p>2.c) Das Abtasttheorem</p>
+<p>
+        "Wenn ein kontinuierliches Signal mit einer oberen Grenzfrequenz von fmax mit einer Abtastrate 
+        von mehr als 2*fmax abgetastet wird, kann man das Ursprungssignal ohne Informationsverlust aus dem 
+        abgetasteten Signal rekonstruieren" 
+        <i> Malaka, R., Butz A. & Hußmann, H. (2009). Medieninformatik: Eine 
+        Einf&uuml;rung (2. Aufl.). Deutschland: Pearson Studium, S.63</i>
+        <br><br>
+        Dementsprechend muss die Abtastfrequenz mindestens das doppelte der Signalfrequenz sein (fa >= 2 * fmax),
+        da sonst keine richtige Rekonstruktion möglich und die rekonstruierte Signalfrequenz wäre tiefer.
+        <br>
+        Der Grenzfall wäre somit wenn die Frequenz mit nur genau (fa = 2 * fmax) abgetastet werden würde.
+</p>
+<img src="./pics/skizze_grenze.png"  alt="Grenze-Abtasttheorem" width="300" height="200">
+<br><br>
+
+<p>2.d) Aliasing erfolgreich verhindern</p>
+<p>
+        Um kein Aliasing zu bekommen entfernt man am Anfang, mit einem Tiefpassfilter, die zu hohen Frequenzen. 
+        Der Tiefpassfilter filtert alle Frequenzen die größer als die Hälfte der Signalfrequenz sind. 
+        Dann kann man den erhaltene Teil spiegeln und rekonstruieren. 
+        <br>
+        Durch diese Vorbehandlung entstehen bei der späteren Abtastung kein Aliasing, wodurch es dann keine Verzerrung im Audio gibt.
+</p>
+
+<p>2.e) Downsamling</p>
+<p>Modifiziere wave_io dahingehend, dass vom eingelesenen Audiosignal jeder zweite Abtastwert verworfen wird und das resultierende Signal abgespeichert wird.
+         Der Header muss natürlich entsprechend verändert werden!
+</p>
+
+<p>2.f) Downsamling Sinusdateien</p>
+<p>Welche Frequenzen erscheinen nach dem Down-Sampling? Was würde passieren, wenn man geeignet bandbegrenzen würde?</p>
+
+<p>2.g) Downsamling Sprachdatei</p>
+<p>Beschreibe, wie sich der Klang verändert. Erkläre, warum das passiert! </p>
 
 <br><h3>Aufgabe 3 - 3.1</h3>
 <p>Loesung</p>
