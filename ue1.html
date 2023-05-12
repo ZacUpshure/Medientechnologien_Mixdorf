@@ -149,9 +149,7 @@ sine_lo05.wav
     			// 2e Downsampling <br/>
 			int downsample_rate = 2;<br/>
 			for (int i=0; i < (samples/2); i++) {<br/>
-				
-				// ********* ToDo *************** //
-				readWavFile.sound[i] = readWavFile.sound[i*downsample_rate];<br/>
+				readWavFile.sound[i] = readWavFile.sound[i*downsample_rate];
 				
 			}<br/>
 			sampleRate /= downsample_rate ;<br/>
