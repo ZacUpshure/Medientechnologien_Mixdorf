@@ -177,8 +177,8 @@ sine_lo05.wav
 	 // 3b Bitreduzierung<br/>
 	int reduced_bits = 1;<br/>
 	for (int i=0; i < samples; i++) {<br/>	
-		readWavFile.sound[i] /= 2^reduced_bits; //letzte n bits streichen (1 Bit weg --> gleichzeitiges Halbieren der (Amplituden-)Werte)<br/>
-		readWavFile.sound[i] *= 2^reduced_bits; //Lautstärke wieder anpassen, da die Amplitude dabei auch gekürzt wird (siehe oben)<br/>
+		readWavFile.sound[i] /= 2^reduced_bits; <br/>
+		readWavFile.sound[i] *= 2^reduced_bits; <br/>
 	}<br/>
 </p>
 
