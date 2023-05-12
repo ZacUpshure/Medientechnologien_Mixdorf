@@ -98,6 +98,18 @@ sine_lo05.wav
         16.000 / 5 = 3.200
         Damit liegt die Frequenz der sine_hi03 bei ca 3.200 kHz.     
 </p>
+        
+<p>2.a) Modifiziere wave_io dahingehend, dass die Samples in der WAV-Datei in eine (lesbare) ASCIIDatei geschrieben werden. Lies die von mir geschickten Sinusdateien (Sampling-Frequenz: 16 kHz)
+        ein und bestimme aus den resultierenden Zahlenfolgen in der ASCII-Datei die Frequenz der SinusSchwingungen. Begründe!</p>
+<p>Code: 
+        <br/>
+        // 2a Samples schreiben	
+        for (int i=0; i < samples;i++) {
+        
+                // ********* ToDo ***************
+                System.out.println(readWavFile.sound[i]);
+        }
+</p>
 
 <p>2.b) Überprüfung der Sch&auml;tzung aus 2a mit GRAM(Spektralanalyse-Tool)</p>
 <p>Einstellungen Gram: Freq Scale: Linear, FFT Size: 512, Time scale: 1msec</p>
