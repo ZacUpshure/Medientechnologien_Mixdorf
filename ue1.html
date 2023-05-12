@@ -172,7 +172,15 @@ sine_lo05.wav
 <p>Beschreibe, wie sich der Klang verändert. Erkläre, warum das passiert! </p>
 
 <br><h3>Aufgabe 3 - 3.1</h3>
-<p>Loesung</p>
+	
+<p>3.b) Code:<br/>
+	 // 3b Bitreduzierung<br/>
+	int reduced_bits = 1;<br/>
+	for (int i=0; i < samples; i++) {<br/>	
+		readWavFile.sound[i] /= 2^reduced_bits; //letzte n bits streichen (1 Bit weg --> gleichzeitiges Halbieren der (Amplituden-)Werte)<br/>
+		readWavFile.sound[i] *= 2^reduced_bits; //Lautstärke wieder anpassen, da die Amplitude dabei auch gekürzt wird (siehe oben)<br/>
+	}<br/>
+</p>
 
 </body>
 </html>
