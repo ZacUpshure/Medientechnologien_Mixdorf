@@ -173,12 +173,18 @@ sine_lo05.wav
 
 <br><h3>Aufgabe 3 - 3.1</h3>
 <p>
-3.a Die herkoemmlichen PC-Soundkarten arbeiten meist entweder mit 16 oder 8 bit-Aufloesung. Wie
+3.a) Die herkoemmlichen PC-Soundkarten arbeiten meist entweder mit 16 oder 8 bit-Aufloesung. Wie
 groß ist die Anzahl bei diesen beiden Werten darstellbaren Amplitudenwerten?<br/>
 8 Bit: -128 bis 127, 16 Bit: -32678 bis 32767
 <p/>
 	
-<p>3.b) Code:<br/>
+<p>3.b) Modifiziere wave_io dahingehend, dass die Bitanzahl reduziert wird. <br/>
+	Dazu werden alle Samples durch eine Potenz von 2 geteilt (Integer-Division ohne Rest). <br/>
+	Damit das resultierende Signal nicht leiser wird als das Original, wird die Operation durch Multiplikation <br/>
+	mit derselben 2er Potenz kompensiert. Zu beachten: Der Datentyp hat nach wie vor 16 bit!<br/>
+	Code:<br/>
+</p>
+<p>
 	 // 3b Bitreduzierung<br/>
 	int reduced_bits = 1;<br/>
 	for (int i=0; i < samples; i++) {<br/>	
@@ -186,6 +192,21 @@ groß ist die Anzahl bei diesen beiden Werten darstellbaren Amplitudenwerten?<br
 		readWavFile.sound[i] *= 2^reduced_bits; <br/>
 	}<br/>
 </p>
+<p>
+	3.d) Was charakterisiert das entstehende Quantisierungsgeraeusch bei der Bitreduzierung und macht es
+	besonders stoerend?
+</p>
+<p>
+	Konstantes lautes Rauschen im Hintergrund.
+</p>	
+<p>
+	3.f) Welchen Charakter hat das Rauschen bei einer Reduktion um 1bit und wie verändert es sich bei
+	zunehmender Bit-Reduktion?
+</p>
+<p>
+	Ein leises Rauschen entsteht was lauter wird wenn die Bit-Reduktion mehr sich erhoeht.
+</p>	
+
 
 </body>
 </html>
