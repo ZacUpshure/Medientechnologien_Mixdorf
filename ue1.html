@@ -82,18 +82,21 @@ sine_lo05.wav
 <img src="./pics/sine_hi03_lo05_ascii.png"  alt="hi06_lo05_ascii" width="600" height="300">
 
 <p>Bestimmung der Frequenz der Sinus-Schwingungen.</p>
+
+<p>     Sinus-Schwingung: sine_lo05 <br>
+        Um die Frequenz abzulesen muss man die Amplitude ermitteln. <br>
+        Da das Sample 16.069 zweimal hintereinander folgt ist davon auszugehen, dass die Amplitude genau zwischen diesen beiden Werten liegt. <br>
+        Jeder Wert in der Datei ist ein Sample also ist die Schwingungsdauer von einer Amplitude zur n&auml;chsten. <br>
+        Die n&auml;chste Amplitude liegt dann auch wieder zwischen diesen beiden Werten. <br>
+        Zaehlt man nun die Samles von einer zur naechsten Amplitude kommt man auf 15 + die 2 halben, also 16. <br>
+        16.000 / 16 = 1000 <br>
+        Damit liegt die Frequenz der sine_lo05 bei 1kHz.
+</p>
 <p>
-        Um die Frequenz abzulesen muss man die Amplitude ermitteln.
-        16.300 ist ca der groesste Wert und muss daher die Amplitude sein.
-        Jeder Wert in der Datei ist ein Sample also ist die Schwingungsdauer von einer Amplitude zur naechsten.
-        Da das Sample 10.394 zweimal hintereinander folgt ist davon auszugehen, dass die Amplitude genau zwischen diesen beiden Werten liegt.
-        Zaehlt man nun die Samles von einer zur naechsten Amplitude kommt man auf 3,5.
-        16.000 / 3,5 = 4571
-        Damit liegt die Frequenz der sine_hi01 bei ca. 4,5 kHz.
-        Das ganze Analog zur sine_lo03:
-        Von Sample 16.000 bis 16.000 zaehlt man 5 Samples.
-        16.000 / 5 = 3.200
-        Damit liegt die Frequenz der sine_hi03 bei ca 3.200 kHz.     
+        Sinus-Schwingung: sine_hi03 <br>
+        Das ganze &auml;hnlich zur sine_hi03. Von Sample 15.137 bis 15.137 zaehlt man 3 Samples. <br>
+        16.000 / 3 = ~5.333 <br>
+        Damit liegt die Frequenz der sine_hi03 bei ca 5,3 kHz.     
 </p>
 <!-- von Arron 
 <p>Code: 
@@ -109,8 +112,8 @@ sine_lo05.wav
 <p>Einstellungen Gram: Freq Scale: Linear, FFT Size: 512, Time scale: 1msec</p>
 
 
-<img src="./pics/sine_hi03_gram.png"  alt="hi03_gram" width="359" height="175">
-<img src="./pics/sine_lo05_gram.png"  alt="lo05_gram" width="350" height="175">
+<img src="./pics/sine_hi03_gram.png"  alt="hi03_gram" width="350" height="250">
+<img src="./pics/sine_lo05_gram.png"  alt="lo05_gram" width="350" height="250">
 <br><br>
 <p>2.c) Das Abtasttheorem</p>
 <p>
