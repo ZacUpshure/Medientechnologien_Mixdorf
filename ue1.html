@@ -146,6 +146,20 @@ sine_lo05.wav
 <p>Modifiziere wave_io dahingehend, dass vom eingelesenen Audiosignal jeder zweite Abtastwert verworfen wird und das resultierende Signal abgespeichert wird.
          Der Header muss natürlich entsprechend verändert werden!
 </p>
+<p>Code</p>
+<p>
+    			// 2e Downsampling <br/>
+			int downsample_rate = 2; // 1 für kein Downsampling, 2 für samples halbieren, 3 für dritteln ...<br/>
+			for (int i=0; i < (samples/2); i++) {<br/>
+				
+				// ********* ToDo *************** //
+				readWavFile.sound[i] = readWavFile.sound[i*downsample_rate];<br/>
+				
+			}<br/>
+			sampleRate /= downsample_rate ;<br/>
+			numFrames /= downsample_rate;<br/> 
+</p>
+
 
 <p>2.f) Downsamling Sinusdateien</p>
 <p>Welche Frequenzen erscheinen nach dem Down-Sampling? Was würde passieren, wenn man geeignet bandbegrenzen würde?</p>
