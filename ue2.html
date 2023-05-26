@@ -50,41 +50,41 @@
 <p>Bescheibung</p>
 <p>Loesung</p>
         <code>
-                try (FileOutputStream fosh = new FileOutputStream("horizontal.txt");
-     OutputStreamWriter oswh = new OutputStreamWriter(fosh, "US-ascii");
-     BufferedWriter bwh = new BufferedWriter(oswh)) {
-
-    // BGR schreiben horizontal 2.1.
-    for (int x = 0; x < bmp.image.getWidth(); x++) {
-        int rAmount = bmp.image.getRgbPixel(x, 0).r;
-        int gAmount = bmp.image.getRgbPixel(x, 0).g;
-        int bAmount = bmp.image.getRgbPixel(x, 0).b;
-
-        bwh.write(rAmount + " " + gAmount + " " + bAmount);
-        bwh.newLine();
-    }
-
-} catch (IOException e) {
-    e.printStackTrace();
-}
-
-try (FileOutputStream fosv = new FileOutputStream("vertikal.txt");
-     OutputStreamWriter oswv = new OutputStreamWriter(fosv, "US-ascii");
-     BufferedWriter bwv = new BufferedWriter(oswv)) {
-
-    // BGR schreiben vertikal 2.1.
-    for (int y = 0; y < bmp.image.getHeight(); y++) {
-        int rAmount = bmp.image.getRgbPixel(0, y).r;
-        int gAmount = bmp.image.getRgbPixel(0, y).g;
-        int bAmount = bmp.image.getRgbPixel(0, y).b;
-
-        bwv.write(rAmount + " " + gAmount + " " + bAmount);
-        bwv.newLine();
-    }
-
-} catch (IOException e) {
-    e.printStackTrace();
-}
+     try (FileOutputStream fosh = new FileOutputStream("horizontal.txt");<br>
+     OutputStreamWriter oswh = new OutputStreamWriter(fosh, "US-ascii");<br>
+     BufferedWriter bwh = new BufferedWriter(oswh)) {<br>
+     <br>
+    // BGR schreiben horizontal 2.1.<br>
+    for (int x = 0; x < bmp.image.getWidth(); x++) {<br>
+        int rAmount = bmp.image.getRgbPixel(x, 0).r;<br>
+        int gAmount = bmp.image.getRgbPixel(x, 0).g;<br>
+        int bAmount = bmp.image.getRgbPixel(x, 0).b;<br>
+        <br>
+        bwh.write(rAmount + " " + gAmount + " " + bAmount);<br>
+        bwh.newLine();<br>
+    }<br>
+<br>
+} catch (IOException e) {<br>
+    e.printStackTrace();<br>
+}<br>
+<br>
+try (FileOutputStream fosv = new FileOutputStream("vertikal.txt");<br>
+     OutputStreamWriter oswv = new OutputStreamWriter(fosv, "US-ascii");<br>
+     BufferedWriter bwv = new BufferedWriter(oswv)) {<br>
+        <br>
+    // BGR schreiben vertikal 2.1.<br>
+    for (int y = 0; y < bmp.image.getHeight(); y++) {<br>
+        int rAmount = bmp.image.getRgbPixel(0, y).r;<br>
+        int gAmount = bmp.image.getRgbPixel(0, y).g;<br>
+        int bAmount = bmp.image.getRgbPixel(0, y).b;<br>
+        <br>
+        bwv.write(rAmount + " " + gAmount + " " + bAmount);<br>
+        bwv.newLine();<br>
+    }<br>
+<br>
+} catch (IOException e) {<br>
+    e.printStackTrace();<br>
+}<br>
         </code>
 
 <br><h3>Aufgabe 2 - 2.2</h3>
