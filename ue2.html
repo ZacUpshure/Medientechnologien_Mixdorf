@@ -173,7 +173,33 @@ try (FileOutputStream fosv = new FileOutputStream("vertikal.txt");<br>
 <p>Loesung</p>    
         
 <br><h3>Aufgabe 2 - 2.5</h3>
-<p>Loesung</p>  
+<p>Loesung</p>
+        <p>downsample bis Moiré-Effekt</p>
+        <p>horizontal downsample 2x grating_V2</p>
+        <img src="./pics/grating_V2_downsampled_horizontal_2x.bmp" alt="Penguins auf dem Eis" width="350" height="300">
+        <p>vertikal downsample 9x grating_H6</p>
+        <img src="./pics/grating_H6_downsampled_vertical_9x.bmp" alt="Koalabaer auf dem Baum" width="350" height="300">
+<code>
+for y in 0..<bmp.image.getHeight() {<br>
+    for x in 0..<bmp.image.getWidth() {<br>
+        // Horizontal<br>
+        if x % 4 != 0 {<br>
+            let pixel = bmp.image.getRgbPixel(x - 1, y)<br>
+            bmp.image.setRgbPixel(x, y, pixel)<br>
+        }
+    }
+}
+
+for y in 0..<bmp.image.getHeight() {<br>
+    for x in 0..<bmp.image.getWidth() {<br>
+        // Vertikal<br>
+        if y % 2 != 0 {<br>
+            let pixel = bmp.image.getRgbPixel(x, y - 1)<br>
+            bmp.image.setRgbPixel(x, y, pixel)<br>
+        }<br>
+    }<br>
+}<br>     
+</code>
 
 <br><h3>Aufgabe 3 - 3.1</h3>
 <p>Loesung</p>
