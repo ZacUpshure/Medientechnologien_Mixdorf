@@ -20,13 +20,17 @@
 
 <h2>Uebung 2</h2>
 <br><h3>Aufgabe 1 - 1.1</h3>
+<p>Bescheibung</p>
+        <p>Nun lies die Bilder mit bmp_io ein und erklaere die Angaben im Header, die auf der Konsole ausgegeben werden! Wie erklaert sich die Dateigroesse für die beiden Dateien?</p>
+        
 <table><tr>
 <td><img src="./pics/nature_06.bmp" alt="Koalabaer auf dem Baum" width="350" height="300"></td>
 <td><img src="./pics/manmade_06.bmp" alt="Penguins auf dem Eis" width="350" height="300"></td>
 <td><img src="./pics/grating_H6.bmp" alt="Koalabaer auf dem Baum" width="350" height="300"></td>
 <td><img src="./pics/grating_V2.bmp" alt="Penguins auf dem Eis" width="350" height="300"></td>
 </tr></table>
-<p>Bescheibung</p>
+        
+<p>Loesung</p>
         <p>Headerangaben: </p>
         <p>Grating_h6 | Grating_v2</p>
         <p>Dateigroesse: 921.654 bytes</p>
@@ -42,14 +46,11 @@
         
 <p>Loesung</p>
 
-<br><h3>Aufgabe 1 - 1.2</h3>
-<p>Loesung</p>
-
 <br><h3>Aufgabe 2 - 2.1</h3>
 <img src="./pics/stadt.png" alt="Marsch &uuml;ber die Stra&szlig;e" width="450" height="300">
 <p>Bescheibung</p>
 <p>Loesung</p>
-        <code>
+     <code>
      try (FileOutputStream fosh = new FileOutputStream("horizontal.txt");<br>
      OutputStreamWriter oswh = new OutputStreamWriter(fosh, "US-ascii");<br>
      BufferedWriter bwh = new BufferedWriter(oswh)) {<br>
@@ -85,10 +86,27 @@ try (FileOutputStream fosv = new FileOutputStream("vertikal.txt");<br>
 } catch (IOException e) {<br>
     e.printStackTrace();<br>
 }<br>
-        </code>
+</code>
+       <p>Grating_V2 Ascii horizontal Ergebnisausschnitt:</p> 
+       <br>
+       <p>Grating_V2 Ascii vertikal Ergebnisausschnitt:</p>
+       <br>
+       <p>Grating_H6 Ascii horizontal Ergebnisausschnitt:</p>
+       <br>
+       <p>Grating_H6 Ascii vertikal Ergebnisausschnitt:</p>
 
 <br><h3>Aufgabe 2 - 2.2</h3>
+<p>Beschreibung</p>
+        <p>Auch bei der Bildabtastung muss das sogenannte Abtasttheorem eingehalten werden. Wie lautet es und wie laesst sich der Grenzfall, für den es gerade noch gilt, illustrieren
+(Zeichnung !)?</p>
 <p>Loesung</p>
+        <p>Das Abtasttheorem, auch als Nyquist-Shannon-Abtasttheorem bekannt, 
+                besagt, dass für eine zuverlässige Wiederherstellung eines Signals 
+                aus seinen Abtastwerten die Abtastfrequenz mindestens doppelt so 
+                hoch sein muss wie die höchste Frequenzkomponente im Signal.
+        </p>
+        <br>
+        <p>(f_a >= 2 * f_max), sonst kann aliasing auftauchen</p>
 
 <br><h3>Aufgabe 2 - 2.3</h3>
 <p>Loesung</p>
