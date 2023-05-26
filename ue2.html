@@ -146,6 +146,34 @@ try (FileOutputStream fosv = new FileOutputStream("vertikal.txt");<br>
     }<br>
 }<br>
 </code>
+      
+<br><h3>Aufgabe 2 - 2.4</h3>
+<p>Beschreibung</p>
+        <p>
+                Erkläre, wie bei Bild- und Videoaufnahmen Aliasing entstehen kann. Ähnlich wie bei der 1. Übung am Audiosignal wollen wir auf das Bild ein Down-Sampling anwenden und
+                sehen, wann dabei Aliasing auftritt. Beim Audiosignal haben wir jedes zweite Sample verworfen und damit die Abtastfrequenz halbiert. Beim Bild verringern wir die räumliche
+                Auflösung, indem wir die Zahl der Bildzeilen bzw. Bildspalten verringern. Dabei wollen wir das Bild allerdings nicht verkleinern - was normalerweise die Folge wäre - sondern einfach
+                die ungeradzahligen Spalten durch den Inhalt der geradzahligen Spalten ersetzen, d.h. Spalte 1 wird durch Spalte 0 ersetzt, Spalte 3 durch Spalte 2 etc. und analog für die Zeilen.
+                Wenn das Ursprungsbild nun sehr feine Strukturen aufweist, wie in machen Testdateien, können Aliasing-Verzerrungen sichtbar werden. Achte darauf, dass stets Rot, Grün und
+                Blau getrennt manipuliert werden müssen.
+        </p> 
+        <p>
+            Aliasing tritt bei Bild- und Videoaufnahmen auf, wenn die Abtastung oder Auflösung des Bildes nicht ausreicht, 
+            um feine Details oder Muster mit hoher Frequenz genau darzustellen. Im Zusammenhang mit der Bildverkleinerung 
+            tritt Aliasing auf, wenn wir die räumliche Auflösung reduzieren, indem wir die Anzahl der Bildzeilen oder 
+            -spalten verringern.    
+        </p>
+        <p>
+            Wenn das ursprüngliche Bild feine Strukturen oder Details mit hoher Frequenz enthält, 
+            wie zum Beispiel dünnen Linien oder Mustern, können Aliasing-Verzerrungen sichtbar werden. 
+            Dies liegt daran, dass die reduzierte räumliche Auflösung nicht ausreicht, um diese Details genau darzustellen, 
+            was zu Artefakten oder Verzerrungen führt. Diese können als gezackte Kanten, Moiré-Muster oder 
+            Unschärfeerscheinungen in Erscheinung treten.  
+        </p>
+<p>Loesung</p>    
+        
+<br><h3>Aufgabe 2 - 2.5</h3>
+<p>Loesung</p>  
 
 <br><h3>Aufgabe 3 - 3.1</h3>
 <p>Loesung</p>
