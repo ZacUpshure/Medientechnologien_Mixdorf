@@ -132,6 +132,20 @@ try (FileOutputStream fosv = new FileOutputStream("vertikal.txt");<br>
                 <td><img src="./manmade_06-modified.bmp" alt="Koalabaer auf dem Baum" width="350" height="300"></td>
                 <td><img src="./nature_06-modified.bmp" alt="Penguins auf dem Eis" width="350" height="300"></td>
         </tr></table>
+        <code>
+    for (int y = 0; y < bmp.image.getHeight(); y++) {<br>
+    for (int x = 0; x < bmp.image.getWidth(); x++) {<br>
+        int rAmount = bmp.image.getRgbPixel(x, y).r;<br>
+        int gAmount = bmp.image.getRgbPixel(x, y).g;<br>
+        int bAmount = bmp.image.getRgbPixel(x, y).b;<br>
+        <br>
+        int grey = (int) Math.round(0.3 * rAmount + 0.6 * gAmount + 0.1 * bAmount);<br>
+        <br>
+        PixelColor greyPixel = new PixelColor(grey, grey, grey);<br>
+        bmp.image.setRgbPixel(x, y, greyPixel);<br>
+    }<br>
+}<br>
+</code>
 
 <br><h3>Aufgabe 3 - 3.1</h3>
 <p>Loesung</p>
