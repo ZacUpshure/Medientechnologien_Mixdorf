@@ -257,23 +257,80 @@ System.out.println(standardDeviation);
 Ergebnis: Standardabweichung(Kontrast) des Bildes Y = 50.06</p>
 
 <p>Loesung b)</p>
-	<p></p>
-	<p></p>
-	<p></p>
-	<p></p>
-	<p></p>
-	<p></p>
-	<p></p>
-	<p></p>
+	<p>Code:
+int h = -80;
+
+for(int y = 0; y < bmp.image.getHeight(); y++) {
+	for(int x = 0;x < bmp.image.getWidth(); x++) {
+		int rNew = bmp.image.getRgbPixel(x,y).r + h;
+		int gNew = bmp.image.getRgbPixel(x,y).g + h;
+		int bNew = bmp.image.getRgbPixel(x,y).b + h;
+
+		if((rNew <= 0 )){ //Falls Wert unter 0 dann auf 0 setzen um in 8 Bit zu bleiben
+			rNew = 0;
+			gNew = 0;
+			bNew = 0;
+		}
+		if((rNew >= 255 )){ //Falls Wert Ã¼ber 255 dann auf 255 setzen um in 8 Bit zu bleiben
+			rNew = 255;
+			gNew = 255;
+			bNew = 255;
+		}
+		
+		PixelColor pcr = new PixelColor(rNew,gNew,bNew);
+
+		bmp.image.setRgbPixel(x,y,pcr);
+	}
+}</p>
+	<p>dunkelstes bild</p>
+	<img src="./pics/ueb4/a04.2histogram.png" class="img_w_100">
+	<p>histogram</p>
+	<img src="./pics/ueb4/a04.2histogram.png" class="img_w_100">
+	<p>hellstes bild</p>
+	<img src="./pics/ueb4/a04.2histogram.png" class="img_w_100">
+	<p>histogram</p>
+	<img src="./pics/ueb4/a04.2histogram.png" class="img_w_100">
+	<p>Pixel mit Helligkeit unter 0 wurden mit 0 ersetzt und Pixel mit Helligkeit über 255 wurden mit 255 ersetzt (Um im 8 Bit bereich zu bleiben).
+Die werte für die Histogramme dieser Aufgabe wurden wieder mit einer durch Java generierten Textdatei erstellt, siehe Code aus Aufgabe2.</p>
 	
 <p>Loesung c)</p>
-	<p></p>
-	<p></p>
-	<p></p>
-	<p></p>
-	<p></p>
-	<p></p>
-	<p></p>
+	<p>Code:
+Double k = -0.5; // k = Wert mit dem die Helligkeit multipliziert wird.
+for(int y = 0; y < bmp.image.getHeight(); y++) {
+	for(int x = 0;x < bmp.image.getWidth(); x++) {
+		Double rNew = bmp.image.getRgbPixel(x,y).r * k;
+		Double gNew = bmp.image.getRgbPixel(x,y).g * k;
+		Double bNew = bmp.image.getRgbPixel(x,y).b * k;
+
+		if((rNew <= 0 )){
+			rNew = 0.0;
+			gNew = 0.0;
+			bNew = 0.0;
+		}
+		if((rNew >= 255 )){
+			rNew = 255.0;
+			gNew = 255.0;
+			bNew = 255.0;
+		}
+		PixelColor pcr = new PixelColor(rNew.intValue(),gNew.intValue(),bNew.intValue());
+		bmp.image.setRgbPixel(x,y,pcr);
+	}
+}</p>
+	<p>kontrast ärmstes bild</p>
+	<img src="./pics/ueb4/a04.2histogram.png" class="img_w_100">
+	<p>histogram</p>
+	<img src="./pics/ueb4/a04.2histogram.png" class="img_w_100">
+	<p>kontrastreichstes bild</p>
+	<img src="./pics/ueb4/a04.2histogram.png" class="img_w_100">
+	<p>histogram</p>
+	<img src="./pics/ueb4/a04.2histogram.png" class="img_w_100">
+	<p>Pixel mit Helligkeit unter 0 wurden mit 0 ersetzt und Pixel mit Helligkeit Ã¼ber 255 wurden mit 255 ersetzt (Um im 8 Bit bereich zu bleiben).
+Bei dem Bild mit der Multiplikation von k = 10 kann man sehen dass die Helligkeit aller Pixel so hoch ist, das kaum noch etwas zu erkennen ist.
+Bei dem Bild mit der Muultiplkation von k = 0.2 also dem Bild mit dem geringsten Kontrast ist noch mehr zu erkennen, aber auch alle Pixel dieses bildes sind dunkler geworden. Es ist kaum noch ein Kontrast zu erkennen.
+Wenn k < 0 ist, Ã¤ndert sich das Vorzeichen und alle Pixel werden <= 0 daraus folgt, das sich die Pixel nicht mehr im 8 Bit bereich befinden, Ã¤ndert man alle Pixel unter 0, zu 0, resultiert dies in einem komplett Schwarzen Bild.</p>
+	<p>Unterschied zwischen dem Histogramm der HelligkeitsverÃ¤nderung und dem Histogramm der KontrastÃ¤nderung:
+Es ist zu erkennen, dass sich bei der KontrastÃ¤nderung im vergleich zur HelligkeitsÃ¤nderung das VerhÃ¤ltnis der Helligkeitswerte der Pixel zueinander Ã¤ndert. 
+Bei der HelligkeitsÃ¤nderung verschiebt sich die Kruve aus dem Histogramm aus Aufgabe2 nur, bei der KontrastÃ¤nderung hat eine Multiplikation mit 0.2 bspw einen grÃ¶ÃŸeren einfluss auf Pixel mit hohen Helligkeitswert als auf Pixel mit geringem Helligkeitswert.</p>
 	<p></p>
 
 </body>
