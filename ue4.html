@@ -25,7 +25,151 @@
     <source src="./video/wildlife.webm" type="video/webm" />
 </video>
 <p>Bescheibung</p>
+        <p>a. RGB ist der gebräuchlichste Farbraum bei der Aufzeichnung und Darstellung von Bildern. Hier wird das
+Lichtspektrum in seine Rot-, Grün- und Blauanteile aufgespalten. Der YCbCr Farbraum hingegen besteht aus
+der Luminanz Y (Helligkeit) und den Farbanteilen (Chrominanz) Cb und Cr. Die RGB Farben eines Bildes
+lassen sich also in den YCbCr Farbraum transformieren. Für viele Anwendungen, z.B. die Bildkompression,
+ist es günstig, Helligkeits- und Farbinformation getrennt zu verarbeiten. Nenne den physiologischen Grund
+dafür!</p>
+        <br>
+        <p>b. Erstelle aus deinen eigenen Bildern Versionen, die nur jeweils den Rot-, Grün- und Blauanteil
+zeigen.(Hinweis: Dazu müssen einfach die jeweils anderen Farbwerte auf null gesetzt werden).</p>
+        <br>
+        <p>c. Nun transformiere deine RGB-Bilder nach YCbCr. Lese dafür jedes Pixel ein und berechne die Helligkeit
+Y (Luminanzformel!) sowie die Chrominanzen Cb und Cr (Chrominanzformeln!) aus den RGB Werten.</p>
+        <br>
+        <p>d. Wandle zunächst zur Rekonstruktion deines Bildes die YCbCr Werte zurück in RGB.</p>
 <p>Loesung</p>
+        <p> a) Da das menschliche Auge helligkeitsbezogene Unterschiede besser wahrnimmt als 
+        Unterschiede in der Farbe, werden bei Bildkompressionen unter anderem Farbmodelle verwendet, 
+        bei denen Helligkeit und Farbe separat betrachtet werden. Dadurch können die einzelnen Parameter gezielter angepasst werden.</p>
+        <br>
+        <p> b)
+        <code>
+                for (int y = 0; y < bmp.image.getHeight(); y++) {
+    for (int x = 0; x < bmp.image.getWidth(); x++) {
+
+        // Code for red
+        PixelColor red = new PixelColor(bmp.image.getRgbPixel(x, y).r, 0, 0);
+        bmp.image.setRgbPixel(x, y, red);
+
+        // Code for green
+        PixelColor green = new PixelColor(0, bmp.image.getRgbPixel(x, y).g, 0);
+        bmp.image.setRgbPixel(x, y, green);
+
+        // Code for blue
+        PixelColor blue = new PixelColor(0, 0, bmp.image.getRgbPixel(x, y).b);
+        bmp.image.setRgbPixel(x, y, blue);
+
+    }
+}
+
+        </code>
+        </p>
+        <img src="./pics/ue3ronny/nature_06_red.bmp" class="img_w_100">
+        <img src="./pics/ue3ronny/nature_06_green.bmp" class="img_w_100">
+        <img src="./pics/ue3ronny/nature_06_blue.bmp" class="img_w_100">
+
+        <p> c) 
+        <code>
+                		for(int y = 0; y < bmp.image.getHeight(); y++) {
+			for (int x = 0; x < bmp.image.getWidth(); x++) {
+
+				int r = bmp.image.getRgbPixel(x,y).r;
+				int g = bmp.image.getRgbPixel(x,y).g;
+				int b = bmp.image.getRgbPixel(x,y).b;
+
+
+//				get Y
+				Double yR = (r * 0.299) + 0;
+				Double yG = (g * 0.587) + 0;
+				Double yB = (b * 0.114) + 0;
+				int lumYint = yR.intValue() + yG.intValue() + yB.intValue();
+				PixelColor lumYintout = new PixelColor(lumYint,lumYint,lumYint);
+				bmp.image.setRgbPixel(x,y,lumYintout);
+
+
+//				get Cb
+				Double cbR = (r * -0.169) + 128;
+				Double cbG = (g * -0.331) + 128;
+				Double cbB = (b * 0.500) + 128;
+				PixelColor cb = new PixelColor(cbR.intValue(), cbG.intValue(), cbB.intValue());
+				bmp.image.setRgbPixel(x,y,cb);
+
+
+//				get Cr
+				Double crR = (r * 0.500) + 128;
+				Double crG = (g * -0.419) + 128;
+				Double crB = (b * -0.081) + 128;
+				PixelColor cr = new PixelColor(crR.intValue(),crG.intValue(),crB.intValue());
+				bmp.image.setRgbPixel(x,y,cr);
+
+			}
+		}        
+        </code>
+        </p>
+        <img src="./pics/ue3ronny/cb.bmp" class="img_w_100">
+        <img src="./pics/ue3ronny/cr.bmp" class="img_w_100">
+        <img src="./pics/ue3ronny/Y.bmp" class="img_w_100">
+        <p>
+                d) 
+                <code>
+                for(int y = 0; y < bmp.image.getHeight(); y++) {
+	for (int x = 0; x < bmp.image.getWidth(); x++) {
+
+		int r = bmp.image.getRgbPixel(x,y).r;
+		int g = bmp.image.getRgbPixel(x,y).g;
+		int b = bmp.image.getRgbPixel(x,y).b;
+
+
+//		get Y
+		Double yR = (r * 0.299) + 0;
+		Double yG = (g * 0.587) + 0;
+		Double yB = (b * 0.114) + 0;
+		int lumYint = yR.intValue() + yG.intValue() + yB.intValue();
+		PixelColor lumYintout = new PixelColor(lumYint,lumYint,lumYint);
+		bmp.image.setRgbPixel(x,y,lumYintout);
+
+
+//		get Cb
+		Double cbR = (r * -0.169) + 128;
+		Double cbG = (g * -0.331) + 128;
+		Double cbB = (b * 0.500) + 128;
+		PixelColor cb = new PixelColor(cbR.intValue(), cbG.intValue(), cbB.intValue());
+		bmp.image.setRgbPixel(x,y,cb);
+
+
+//		get Cr
+		Double crR = (r * 0.500) + 128;
+		Double crG = (g * -0.419) + 128;
+		Double crB = (b * -0.081) + 128;
+		PixelColor cr = new PixelColor(crR.intValue(),crG.intValue(),crB.intValue());
+		bmp.image.setRgbPixel(x,y,cr);
+
+		Double rRe = (1.0 * yR) + (0 * (cb.r - 128)) + (1.403 * (cr.r - 128));
+		Double gRe = (1.0 * yG) + ( -0.344 * (cb.g - 128)) + (-0.714*(cr.g - 128));
+		Double bRe = (1.0 * yB) + (1.773 * (cb.b - 128)) + (0 * (cr.b - 128));
+
+		PixelColor rgbRe = new PixelColor(rRe.intValue(),gRe.intValue(),bRe.intValue());
+
+		bmp.image.setRgbPixel(x,y,rgbRe);
+
+	}
+}
+
+Relevanter Teil des codes fÃ¼r die RÃ¼ckwandlung:
+for(...){{
+Double rRe = (1.0 * yR) + (0 * (cb.r - 128)) + (1.403 * (cr.r - 128));
+Double gRe = (1.0 * yG) + ( -0.344 * (cb.g - 128)) + (-0.714*(cr.g - 128));
+Double bRe = (1.0 * yB) + (1.773 * (cb.b - 128)) + (0 * (cr.b - 128));
+PixelColor rgbRe = new PixelColor(rRe.intValue(),gRe.intValue(),bRe.intValue());
+bmp.image.setRgbPixel(x,y,rgbRe);
+}
+}
+                </code>
+        </p>
+        <img src="./pics/ue3ronny/rgb.bmp" class="img_w_100">
+        
 
 <br><h3>Aufgabe 1 - 1.2</h3>
 <p>Loesung</p>
