@@ -19,7 +19,7 @@
 </iframe>
 
 <h2>Uebung 4</h2>
-<br><h3>Aufgabe 1 - 1.1</h3>
+<br><h3>Aufgabe 1</h3>
 <video controls width="650" height="550">
     <!--source src="./video/greenscreen.webm" type="video/mp4" /-->
     <source src="./video/wildlife.webm" type="video/webm" />
@@ -169,17 +169,112 @@ bmp.image.setRgbPixel(x,y,rgbRe);
                 </code>
         </p>
         <img src="./pics/ueb4/rbg.bmp" class="img_w_100">
-        
 
-<br><h3>Aufgabe 1 - 1.2</h3>
+<br><h3>Aufgabe 2</h3>
+	<p>beschreibung</p>
+	<p>Mithilfe eines Histogramms kann die Verteilung (Häufigkeit) der Helligkeiten eines Bildes dargestellt
+werden. Erstelle ein Histogramm für das monochrome Detailbild aus Aufgabe 1 (Y - Bild). Lese dafür den
+Helligkeitswert der Pixel ein und bestimme die Helligkeitshäufigkeiten (Anzahl gleicher Helligkeiten). Diese
+sollen in eine Textdatei geschrieben und als Histogramm dargestellt werden (z.B. in Excel, Java).</p>
+
 <p>Loesung</p>
+<p>FileOutputStream fos = new FileOutputStream("HistogramYx10.0.txt");
+OutputStreamWriter osw = new OutputStreamWriter(fos, "US-ascii");
+BufferedWriter bw = new BufferedWriter(osw);
 
-<br><h3>Aufgabe 2 - 2.1</h3>
-<p>Loesung</p>
+int[] histogram = new int[256];
+for(int i = 0; i < 256; i++){
+	histogram[i] = 0;
+}
 
-<br><h3>Aufgabe 2 - 2.2</h3>
-<p>Loesung</p>
+for(int y = 0; y < bmp.image.getHeight(); y++) {
+	for (int x = 0; x < bmp.image.getWidth(); x++) {
 
+		int r = bmp.image.getRgbPixel(x,y).r;
+		int g = bmp.image.getRgbPixel(x,y).g;
+		int b = bmp.image.getRgbPixel(x,y).b;
+
+		Double yR = (r * 0.299) + 0;
+		Double yG = (g * 0.587) + 0;
+		Double yB = (b * 0.114) + 0;
+		int lumYint = yR.intValue() + yG.intValue() + yB.intValue();
+
+		histogram[lumYint] = histogram[lumYint] + 1;
+	}
+}
+
+for(int i = 0; i < histogram.length; i++){
+	bw.write(String.valueOf(histogram[i]));
+	bw.newLine();
+}
+
+bw.close();
+osw.close();
+fos.close();
+</p>
+	<P>HÄufigkeit von Helligkeitsstufen in Y:</P>
+	<img src="./pics/ueb4/a04.2histogram.png" class="img_w_100">
+
+<br><h3>Aufgabe 3</h3>
+	<p>beschreibung</p>
+	<p>a. Berechne die mittlere Helligkeit der monochromen Bilder aus Aufgabe 1 (Y - Bild). Lese dafür den
+Helligkeitswert der Pixel ein. Die mittlere Helligkeit ist die Summe aller Helligkeitswerte geteilt durch die
+Anzahl der Bildpunkte. Berechne auch den Kontrast des Bildes, d.h. die Standardabweichung der Helligkeit.
+b. Verändere das monochrome Bild in der Helligkeit durch Subtrahieren der Werte h=(-20, -40, -60, -80)
+bzw. Addieren der Werte h=(20, 40, 60, 80). Beachte dabei, dass ihr beim Ergebnis der Pixelwertberechnung im 8-Bit-Bereich bleibt. Berechne die Histogramme des hellsten und dunkelsten Bildes.
+c. Erhöhe bzw. verringere den Kontrast durch Multiplikation mit den Faktoren k=(0.2, 0.4, 0.8, 1.0) sowie
+k=(1.5, 2.5, 5.0, 10.0). Was würde bei einer Kontraständerung mit k < 0 passieren (Einfach ausprobieren
+und Bild speichern!)? </p>
+<p>Loesung a)</p>
+<p>Code für mittlere Helligkeit:
+int totalPixelValue = 0;
+int totalPixel = bmp.image.getHeight() * bmp.image.getWidth();
+for(int y = 0; y < bmp.image.getHeight(); y++) {
+	for(int x = 0;x < bmp.image.getWidth(); x++) {
+		totalPixelValue += bmp.image.getRgbPixel(x,y).r;
+
+	}
+}
+int averageY = totalPixelValue/totalPixel;
+
+Ergebnis: Mittlere Helligkeit des Gesamtbildes Y = 127.</p>
+
+<p>Code für Standardabweichung:
+
+Double formulaPart1 = (1/(Double.valueOf(bmp.image.getWidth()) * Double.valueOf(bmp.image.getHeight())));
+Double formulaPart2 = 0.0;
+for(int y = 0; y < bmp.image.getHeight(); y++) {
+	for(int x = 0;x < bmp.image.getWidth(); x++) {
+		int yintensityMinusAverage = bmp.image.getRgbPixel(x,y).r - 127; //127 = mittlere Helligkeit siehe oben
+		Double yIntensityMinusAverageSquared = Math.pow(yintensityMinusAverage,2);
+		formulaPart2 += yIntensityMinusAverageSquared;
+	}
+}
+Double variance = formulaPart1 * formulaPart2;
+Double standardDeviation = Math.sqrt(variance);
+System.out.println(standardDeviation);
+
+Ergebnis: Standardabweichung(Kontrast) des Bildes Y = 50.06</p>
+
+<p>Loesung b)</p>
+	<p></p>
+	<p></p>
+	<p></p>
+	<p></p>
+	<p></p>
+	<p></p>
+	<p></p>
+	<p></p>
+	
+<p>Loesung c)</p>
+	<p></p>
+	<p></p>
+	<p></p>
+	<p></p>
+	<p></p>
+	<p></p>
+	<p></p>
+	<p></p>
 
 </body>
 </html>
