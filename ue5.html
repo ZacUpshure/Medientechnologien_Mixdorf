@@ -1,0 +1,419 @@
+<html>
+<head>
+<title></title>
+<link rel="stylesheet" type="text/css" href="format.css">
+<style type="text/css">
+        /* <!--
+                 a:link {font-family:Arial;        font-size:10pt;        text-decoration:none;}
+                a:visited {font-family:Arial; font-size:10pt; text-decoration:none;}
+                a:hover {color:#FF3333; text-decoration:none; font-weight:normal; font-size:10pt;}
+        //--> */
+</style>
+</head>
+
+<body>
+
+<iframe src="oben.html" width="800" height="120" name="IFrame3" id="IFrame3" scrolling="no" frameborder="0">
+         <p>Ihr Browser kann leider keine eingebe5tteten Frames anzeigen:Sie k&ouml;nnen die eingebettete Seite &uuml;ber den
+         folgenden.</p>
+</iframe>
+
+<h2>Uebung 5</h2>
+<h3><b>Aufgabe 1</b></h3>
+<div><b> Klirrfaktor</b></div>
+<p>1a) Musikdatei um die Verstärkung 3, 6 und 9dB:</p>
+<p>wahrnehmbare stärker werdende Verzerrung des Musiksignals (Clipping) </p> 
+<p>Code:</p>
+<div> //Clipping <br>
+        double a = 9.0; <br>
+        float f_sound; <br>
+        for (int i=0; i < samples;i++) { <br>
+          f_sound = readWavFile.sound[i]; <br>
+          f_sound *= Math.pow(10.0, a/20.0); <br>
+          readWavFile.sound[i] = (short) f_sound; <br>
+          if(f_sound > 32767) { <br>
+            readWavFile.sound[i] = 32767; <br>
+          } <br>
+          if(f_sound < -32768) { <br>
+            readWavFile.sound[i] = -32768; <br>
+          }
+        }
+</div>
+<div class="card-container">
+        <span>um 3 dB</span>
+        <audio controls><source src="./audio/ue5" type="audio/wav"></audio>
+</div>
+ <div class="card-container">
+        <span>um 6 dB</span>
+        <audio controls><source src="./audio/ue5" type="audio/wav"></audio>
+</div>
+<div class="card-container">
+        <span>um 9 dB</span>
+        <audio controls><source src="./audio/ue5/" type="audio/wav"></audio>
+</div>
+<br>
+<p>1b)  Bei welcher Verstärkung wird eine Verzerrung wahrnehmbar?</p>
+<p>wahrnehmbar werdende Verzerrung ab 9 dB. </p> 
+
+
+<p>1c) Teil 1: 1kHz-Sinusschwingung um die Verstärkung 3, 6 und 9dB:</p>
+
+<div class="card-container">
+        <span>um 3 dB</span>
+        <audio controls><source src="./audio/ue5" type="audio/wav"></audio>
+</div>
+ <div class="card-container">
+        <span>um 6 dB</span>
+        <audio controls><source src="./audio/ue5" type="audio/wav"></audio>
+</div>
+<div class="card-container">
+        <span>um 9 dB</span>
+        <audio controls><source src="./audio/ue5/" type="audio/wav"></audio>
+</div>
+<p>1c)  Teil 2: Klirrfaktor berechnen:</p>
+
+<div>
+        Allgemeine Formel: Klirrfaktor = sqrt((Oberwellen_ohne_Grundton²) / (Oberwellen_mit_Grundton²))
+</div>
+<br>
+<h3><b>Aufgabe 2</b></h3>
+<div><b> Echo</b></div>
+<p>2a) Echo mit einer Verzögerung von 10, 100 und 200ms:</p>
+<p>Code:</p>
+<div>
+        //Echo <br>
+short [] new_sound = new short [samples];<br>
+// double t = 0.01; // 10 ms   t = 0.1; // 100 ms  t = 0.2; // 200 ms <br>
+<br>
+int fa = 44100;<br>
+double N = t * fa;<br>
+for(int k = 0; k < samples; k++){<br>
+  if (k >= N ){<br>
+   new_sound[k] = (short) (0.5 * readWavFile.sound[k] + 0.6 * (readWavFile.sound[k - (int) N]));<br>
+  } else {<br>
+   new_sound[k] = readWavFile.sound[k];<br>
+  }<br>
+}<br>
+</div>
+
+<div>Um wie viele Abtastwerte N müssen wir verzögern, wenn wir mit 
+        einer Abtastrate von 44.1 kHz arbeiten?</div>
+        <div>
+                Es gilt: N = t * fa, somit N = t * 44.100
+                Demnach muss bei einer Verz&ouml;gerung um 10 ms um 0.01 * 44.100 = 441 Abtastwerte verz&ouml;gert werden.
+                Bei 100 ms muss um 4.410 und bei 200 ms um 8.820 Abtastwerte verz&auml;ert werden.  
+        </div>
+
+<p>2b) Echo angewandt auf Sprach- und Musiksignal:</p>
+
+<div class="card-container">
+        <span>Sprache</span>
+        <audio controls><source src="./audio/ue5" type="audio/wav"></audio>
+</div>
+ <div class="card-container">
+        <span>Musik</span>
+        <audio controls><source src="./audio/ue5" type="audio/wav"></audio>
+</div>
+
+<br>
+<h3><b>Aufgabe 3</b></h3>
+<div><b>  Einfaches Filtern</b></div>
+<p>  z.B. mit der Zuordnungsvorschrift
+        y(k) = 0.5 * x(k) + 0.45 * x(k-1)
+</p>
+<p>Code:</p>
+<div>//Filter <br>
+short [] new_sound = new short [samples];<br>
+<br>
+for(int k = 0; k < samples; k++){<br>
+  if (k >= 1 ){<br>
+    new_sound[k] = (short) ((0.5 * readWavFile.sound[k]) + (0.45 * (readWavFile.sound[k - 1])));<br>
+  } else {<br>
+    new_sound[k] = readWavFile.sound[k];<br>
+  }<br>
+}<br>
+WavFile.write_wav(outFilename, numChannels, numFrames, validBits, sampleRate, new_sound);<br>
+</div>
+
+<p>3a) Vergleich der Musikdatei vor und nach der Filterung:</p>
+<p>HighPass Filter >> y(k) = 0.5 * x(k) + 0.45 * x(k-1)</p>
+<div class="card-container">
+        <span>Musik vor Filterung</span>
+        <audio controls><source src="./audio/ue5" type="audio/wav"></audio>
+</div>
+ <div class="card-container">
+        <span>Musik nach Filterung</span>
+        <audio controls><source src="./audio/ue5" type="audio/wav"></audio>
+</div>
+<p>LowPass Filter >> y(k) = 0.5 * x(k) - 0.45 * x(k-1</p>
+<div class="card-container">
+        <span>Musik vor Filterung</span>
+        <audio controls><source src="./audio/ue5" type="audio/wav"></audio>
+</div>
+ <div class="card-container">
+        <span>Musik nach Filterung</span>
+        <audio controls><source src="./audio/ue5" type="audio/wav"></audio>
+</div>
+
+<p>3b) Testen der Filter beim Weißes Rauschen:</p>
+<div class="card-container">
+        <span>Noise ungefiltert</span>
+        <img src="./pics/ue5" class="img_w_100">
+</div>
+<div class="card-container">
+        <span>Noise HighPass</span>
+        <img src="./pics/ue5" class="img_w_100">
+</div>
+<div class="card-container">
+        <span>Noise LowPAss</span>
+        <img src="./pics/ue5" class="img_w_100">
+</div>
+
+</body>
+</html>
+
+
+
+<!-- 
+        
+<div id="file_container_3e">
+                <br>
+                <br>
+                <br>
+                <div>Grundton "E"</div>
+                <div class="flex-row">
+                        <div class="card-container">
+                                <span>Sinus</span>
+                                <audio controls><source src="./audio/ue3/ue3_rec-E-sin.wav" type="audio/wav"></audio>
+                                <img src="./pics/ue3/L_spektrum_sin.png" class="img_w_100">
+
+                        </div>
+                        <div class="card-container">
+                                <span>Triangle</span>
+                                <audio controls><source src="./audio/ue3/ue3_rec-E-triangle.wav" type="audio/wav"></audio>
+                                <img src="./pics/ue3/L_spektrum_triangle.png" class="img_w_100">
+                                <table class="data-table">
+                                        <thead>
+                                        <tr>
+                                                <th scope="col"></th>
+                                                <th scope="col">1</th>
+                                                <th scope="col">2</th>
+                                                <th scope="col">3</th>
+                                                <th scope="col">4</th>
+                                        </tr>
+                                        </thead>
+                                        <tr>
+                                                <th>dB</th>
+                                                <td class="td-border">8</td>
+                                                <td class="td-border">-1,6</td>
+                                                <td class="td-border">-6,3</td>
+                                                <td class="td-border">-8,7</td>
+                                        </tr>
+                                        <tr>
+                                                <th>Hz</th>
+                                                <td class="td-border">275</td>
+                                                <td class="td-border">827</td>
+                                                <td class="td-border">1379</td>
+                                                <td class="td-border">1929</td>
+                                        </tr>
+                                        <tr>
+                                                <th>Differenz</th>
+                                                <td class="td-border"> </td>
+                                                <td class="td-border">-9,6</td>
+                                                <td class="td-border">-4,7</td>
+                                                <td class="td-border">-2,7</td>
+                                        </tr>
+                                        <tr>
+                                                <th>%</th>
+                                                <td class="td-border"></td>
+                                                <td class="td-border"></td>
+                                                <td class="td-border"></td>
+                                                <td class="td-border"></td>
+
+                                        </tr>
+                                </table>
+                        </div>
+                        <div class="card-container">
+                                <span>Square</span>
+                                <audio controls><source src="./audio/ue3/ue3_rec-E-square.wav" type="audio/wav"></audio>
+                                <img src="./pics/ue3/L_spektrum_square.png" class="img_w_100">
+                                <table class="data-table">
+                                        <thead>
+                                        <tr>
+                                                <th scope="col"></th>
+                                                <th scope="col">1</th>
+                                                <th scope="col">2</th>
+                                                <th scope="col">3</th>
+                                                <th scope="col">4</th>
+                                        </tr>
+                                        </thead>
+                                        <tr>
+                                                <th>dB</th>
+                                                <td class="td-border">8</td>
+                                                <td class="td-border">-1,6</td>
+                                                <td class="td-border">-6,3</td>
+                                                <td class="td-border">-8,7</td>
+                                        </tr>
+                                        <tr>
+                                                <th>Hz</th>
+                                                <td class="td-border">275</td>
+                                                <td class="td-border">827</td>
+                                                <td class="td-border">1379</td>
+                                                <td class="td-border">1929</td>
+                                        </tr>
+                                        <tr>
+                                                <th>Differenz</th>
+                                                <td class="td-border"> </td>
+                                                <td class="td-border">-9,6</td>
+                                                <td class="td-border">-4,7</td>
+                                                <td class="td-border">-2,7</td>
+                                        </tr>
+                                        <tr>
+                                                <th>%</th>
+                                                <td class="td-border"></td>
+                                                <td class="td-border"></td>
+                                                <td class="td-border"></td>
+                                                <td class="td-border"></td>
+
+                                        </tr>
+                                </table>
+                        </div>
+                        <div class="card-container">
+                                <span>Saw</span>
+                                <audio controls><source src="./audio/ue3/ue3_rec-E-saw.wav" type="audio/wav"></audio>
+                                <img src="./pics/ue3/L_spektrum_saw.png" class="img_w_100">
+                                <table class="data-table">
+                                        <thead>
+                                        <tr>
+                                                <th scope="col"></th>
+                                                <th scope="col">1</th>
+                                                <th scope="col">2</th>
+                                                <th scope="col">3</th>
+                                                <th scope="col">4</th>
+                                        </tr>
+                                        </thead>
+                                        <tr>
+                                                <th>dB</th>
+                                                <td class="td-border">8</td>
+                                                <td class="td-border">-1,6</td>
+                                                <td class="td-border">-6,3</td>
+                                                <td class="td-border">-8,7</td>
+                                        </tr>
+                                        <tr>
+                                                <th>Hz</th>
+                                                <td class="td-border">275</td>
+                                                <td class="td-border">827</td>
+                                                <td class="td-border">1379</td>
+                                                <td class="td-border">1929</td>
+                                        </tr>
+                                        <tr>
+                                                <th>Differenz</th>
+                                                <td class="td-border"> </td>
+                                                <td class="td-border">-9,6</td>
+                                                <td class="td-border">-4,7</td>
+                                                <td class="td-border">-2,7</td>
+                                        </tr>
+                                        <tr>
+                                                <th>%</th>
+                                                <td class="td-border"></td>
+                                                <td class="td-border"></td>
+                                                <td class="td-border"></td>
+                                                <td class="td-border"></td>
+
+                                        </tr>
+                                </table>
+                        </div>
+                </div>
+                <br>
+                <br>
+                <div>Veränderung der Grundschwingung (Square) <br>
+                        Verhältnis zwischen positivem und
+negativem Schwingungsteil, beobachtet an drei Fälle: 50/50, 30/70
+und 10/90 zwischen positivem und negativem Teil,
+<br>
+50/50
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+30/70
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+10/90
+                </div>
+                <br>
+                <br>
+                <div class="flex-row">
+                        <div class="card-container">
+                                <span>Square 100 <br> 97%</span>
+                                <audio controls><source src="./audio/ue3/ue3_rec-square_100.wav" type="audio/wav"></audio>
+                                <img src="./pics/ue3/L_spektrum_square_100.png" class="img_w_100">
+
+                        </div>
+                        <div class="card-container">
+                                <span>Square 50/50 <br> 50.453%</span>
+                                <audio controls><source src="./audio/ue3/ue3_rec-E-square_50.wav" type="audio/wav"></audio>
+                                <img src="./pics/ue3/L_spektrum_square_50.png" class="img_w_100">
+
+                        </div>
+                        <div class="card-container">
+                                <span>Square 30/70 <br> 30.407%</span>
+                                <audio controls><source src="./audio/ue3/ue3_rec-square_30.wav" type="audio/wav"></audio>
+                                <img src="./pics/ue3/L_spektrum_square_30.png" class="img_w_100">
+
+                        </div>
+                        <div class="card-container">
+                                <span>Square 10/90 <br> 10.022%</span>
+                                <audio controls><source src="./audio/ue3/ue3_rec-square_10.wav" type="audio/wav"></audio>
+                                <img src="./pics/ue3/L_spektrum_square_10.png" class="img_w_100">
+
+                        </div>
+                </div>
+                <br>
+                <br>
+                <div class="flex-row">
+                        <div class="card-container">
+                                <span>Saw 100 <br> 97%</span>
+                                <audio controls><source src="./audio/ue3/ue3_rec-saw_100.wav" type="audio/wav"></audio>
+                                <img src="./pics/ue3/L_spektrum_saw_100.png" class="img_w_100">
+                        </div>
+                        <div class="card-container">
+                                <span>Saw 50/50 <br> 50.453%</span>
+                                <audio controls><source src="./audio/ue3/ue3_rec-E-saw_50.wav" type="audio/wav"></audio>
+                                <img src="./pics/ue3/L_spektrum_saw_50.png" class="img_w_100">
+                        </div>
+                        <div class="card-container">
+                                <span>Saw 30/70 <br> 30.407%</span>
+                                <audio controls><source src="./audio/ue3/ue3_rec-E-saw_30.wav" type="audio/wav"></audio>
+                                <img src="./pics/ue3/L_spektrum_saw_30.png" class="img_w_100">
+                        </div>
+                        <div class="card-container">
+                                <span>Saw 10/90 <br> 10.022%</span>
+                                <audio controls><source src="./audio/ue3/ue3_rec-E-saw_30.wav" type="audio/wav"></audio>
+                                <img src="./pics/ue3/L_spektrum_saw_10.png" class="img_w_100">
+                        </div>
+
+                </div>
+                <br>
+                <br>
+                <div class="flex-row">
+                        <div class="card-container">
+                                <span>Triangle 100 <br> 97%</span>
+                                <audio controls><source src="./audio/ue3/ue3_rec-E-triangle_100.wav" type="audio/wav"></audio>
+                                <img src="./pics/ue3/L_spektrum_triangle_100.png" class="img_w_100">
+                        </div>
+                        <div class="card-container">
+                                <span>Triangle 50/50 <br> 50.453%</span>
+                                <audio controls><source src="./audio/ue3/ue3_rec-E-triangle_50.wav" type="audio/wav"></audio>
+                                <img src="./pics/ue3/L_spektrum_triangle_50.png" class="img_w_100">
+                        </div>
+                        <div class="card-container">
+                                <span>Triangle 30/70 <br> 30.407%</span>
+                                <audio controls><source src="./audio/ue3/ue3_rec-E-triangle_30.wav" type="audio/wav"></audio>
+                                <img src="./pics/ue3/L_spektrum_triangle_30.png" class="img_w_100">
+                        </div>
+                        <div class="card-container">
+                                <span>Triangle 10/90 <br> 10.022%</span>
+                                <audio controls><source src="./audio/ue3/ue3_rec-E-triangle_10.wav" type="audio/wav"></audio>
+                                <img src="./pics/ue3/L_spektrum_triangle_10.png" class="img_w_100">
+                        </div>
+                </div>
+        </di>
+</div>
+-->
