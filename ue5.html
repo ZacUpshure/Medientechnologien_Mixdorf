@@ -147,17 +147,65 @@
 
 		<p>2b) Echo angewandt auf Sprach- und Musiksignal:</p>
 
-		<div class="card-container">
-			<span>Sprache</span>
-			<audio controls>
-				<source src="./audio/ue5" type="audio/wav" />
-			</audio>
-		</div>
-		<div class="card-container">
+		<div>
 			<span>Musik</span>
-			<audio controls>
-				<source src="./audio/ue5" type="audio/wav" />
-			</audio>
+			<div class="card-container">
+				<span>10</span>
+				<audio controls>
+					<source
+						src="./audio/ue5/Musik_echo_10.wav"
+						type="audio/wav"
+					/>
+				</audio>
+			</div>
+			<div class="card-container">
+				<span>100</span>
+				<audio controls>
+					<source
+						src="./audio/ue5/Musik_echo_100.wav"
+						type="audio/wav"
+					/>
+				</audio>
+			</div>
+			<div class="card-container">
+				<span>200</span>
+				<audio controls>
+					<source
+						src="./audio/ue5/Musik_echo_200.wav"
+						type="audio/wav"
+					/>
+				</audio>
+			</div>
+		</div>
+		<div>
+			<span>Sprache</span>
+			<div class="card-container">
+				<span>10</span>
+				<audio controls>
+					<source
+						src="./audio/ue5/Sprache_echo_10.wav"
+						type="audio/wav"
+					/>
+				</audio>
+			</div>
+			<div class="card-container">
+				<span>100</span>
+				<audio controls>
+					<source
+						src="./audio/ue5/Sprache_echo_100.wav"
+						type="audio/wav"
+					/>
+				</audio>
+			</div>
+			<div class="card-container">
+				<span>200</span>
+				<audio controls>
+					<source
+						src="./audio/ue5/Sprache_echo_200.wav"
+						type="audio/wav"
+					/>
+				</audio>
+			</div>
 		</div>
 
 		<br />
@@ -185,7 +233,12 @@
 		</div>
 
 		<p>3a) Vergleich der Musikdatei vor und nach der Filterung:</p>
-		<p>HighPass Filter >> y(k) = 0.5 * x(k) + 0.45 * x(k-1)</p>
+		<img
+			class="img_w_50"
+			src="./pics/ue5/musik_filter_err.png"
+			alt="kaputt"
+		/>
+		<!-- <p>HighPass Filter >> y(k) = 0.5 * x(k) + 0.45 * x(k-1)</p>
 		<div class="card-container">
 			<span>Musik vor Filterung</span>
 			<audio controls>
@@ -202,27 +255,42 @@
 		<div class="card-container">
 			<span>Musik vor Filterung</span>
 			<audio controls>
-				<source src="./audio/ue5" type="audio/wav" />
+				<source src="./audio/ue5/Musik_06.wav" type="audio/wav" />
 			</audio>
 		</div>
 		<div class="card-container">
 			<span>Musik nach Filterung</span>
 			<audio controls>
-				<source src="./audio/ue5" type="audio/wav" />
+				<source src="./audio/ue5/" type="audio/wav" />
 			</audio>
-		</div>
+		</div> -->
 
 		<p>3b) Testen der Filter beim Weißes Rauschen:</p>
 		<div class="card-container">
 			<span>Noise ungefiltert</span>
+			<audio controls>
+				<source src="./audio/ue5/Noise_06.wav" type="audio/wav" />
+			</audio>
 			<img src="./pics/ue5" class="img_w_100" />
 		</div>
 		<div class="card-container">
 			<span>Noise HighPass</span>
+			<audio controls>
+				<source
+					src="./audio/ue5/Noise_filter_plus.wav"
+					type="audio/wav"
+				/>
+			</audio>
 			<img src="./pics/ue5" class="img_w_100" />
 		</div>
 		<div class="card-container">
 			<span>Noise LowPAss</span>
+			<audio controls>
+				<source
+					src="./audio/ue5/Noise_filter_minus.wav"
+					type="audio/wav"
+				/>
+			</audio>
 			<img src="./pics/ue5" class="img_w_100" />
 		</div>
 	</body>
