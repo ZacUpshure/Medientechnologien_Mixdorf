@@ -1,173 +1,229 @@
 <html>
-<head>
-<title></title>
-<link rel="stylesheet" type="text/css" href="format.css">
-<style type="text/css">
-        /* <!--
+	<head>
+		<title></title>
+		<link rel="stylesheet" type="text/css" href="format.css" />
+		<style type="text/css">
+			/* <!--
                  a:link {font-family:Arial;        font-size:10pt;        text-decoration:none;}
                 a:visited {font-family:Arial; font-size:10pt; text-decoration:none;}
                 a:hover {color:#FF3333; text-decoration:none; font-weight:normal; font-size:10pt;}
         //--> */
-</style>
-</head>
+		</style>
+	</head>
 
-<body>
+	<body>
+		<iframe
+			src="oben.html"
+			width="800"
+			height="120"
+			name="IFrame3"
+			id="IFrame3"
+			scrolling="no"
+			frameborder="0"
+		>
+			<p>
+				Ihr Browser kann leider keine eingebe5tteten Frames
+				anzeigen:Sie k&ouml;nnen die eingebettete Seite &uuml;ber
+				den folgenden.
+			</p>
+		</iframe>
 
-<iframe src="oben.html" width="800" height="120" name="IFrame3" id="IFrame3" scrolling="no" frameborder="0">
-         <p>Ihr Browser kann leider keine eingebe5tteten Frames anzeigen:Sie k&ouml;nnen die eingebettete Seite &uuml;ber den
-         folgenden.</p>
-</iframe>
+		<h2>Uebung 5</h2>
+		<h3><b>Aufgabe 1</b></h3>
+		<div><b> Klirrfaktor</b></div>
+		<p>1a) Musikdatei um die Verstärkung 3, 6 und 9dB:</p>
+		<p>
+			wahrnehmbare stärker werdende Verzerrung des Musiksignals
+			(Clipping)
+		</p>
+		<p>Code:</p>
+		<div>
+			//Clipping <br />
+			double a = 9.0; <br />
+			float f_sound; <br />
+			for (int i=0; i < samples;i++) { <br />
+			f_sound = readWavFile.sound[i]; <br />
+			f_sound *= Math.pow(10.0, a/20.0); <br />
+			readWavFile.sound[i] = (short) f_sound; <br />
+			if(f_sound > 32767) { <br />
+			readWavFile.sound[i] = 32767; <br />
+			} <br />
+			if(f_sound < -32768) { <br />
+			readWavFile.sound[i] = -32768; <br />
+			} }
+		</div>
+		<div class="card-container">
+			<span>um 3 dB</span>
+			<audio controls>
+				<source src="./audio/ue5/Musik_v_3.mp3" type="audio/wav" />
+			</audio>
+		</div>
+		<div class="card-container">
+			<span>um 6 dB</span>
+			<audio controls>
+				<source src="./audio/ue5/Musik_v_6.mp3" type="audio/wav" />
+			</audio>
+		</div>
+		<div class="card-container">
+			<span>um 9 dB</span>
+			<audio controls>
+				<source src="./audio/ue5/Musik_v_9.mp3" type="audio/wav" />
+			</audio>
+		</div>
+		<br />
+		<p>1b) Bei welcher Verstärkung wird eine Verzerrung wahrnehmbar?</p>
+		<p>wahrnehmbar werdende Verzerrung ab 9 dB.</p>
 
-<h2>Uebung 5</h2>
-<h3><b>Aufgabe 1</b></h3>
-<div><b> Klirrfaktor</b></div>
-<p>1a) Musikdatei um die Verstärkung 3, 6 und 9dB:</p>
-<p>wahrnehmbare stärker werdende Verzerrung des Musiksignals (Clipping) </p> 
-<p>Code:</p>
-<div> //Clipping <br>
-        double a = 9.0; <br>
-        float f_sound; <br>
-        for (int i=0; i < samples;i++) { <br>
-          f_sound = readWavFile.sound[i]; <br>
-          f_sound *= Math.pow(10.0, a/20.0); <br>
-          readWavFile.sound[i] = (short) f_sound; <br>
-          if(f_sound > 32767) { <br>
-            readWavFile.sound[i] = 32767; <br>
-          } <br>
-          if(f_sound < -32768) { <br>
-            readWavFile.sound[i] = -32768; <br>
-          }
-        }
-</div>
-<div class="card-container">
-        <span>um 3 dB</span>
-        <audio controls><source src="./audio/ue5" type="audio/wav"></audio>
-</div>
- <div class="card-container">
-        <span>um 6 dB</span>
-        <audio controls><source src="./audio/ue5" type="audio/wav"></audio>
-</div>
-<div class="card-container">
-        <span>um 9 dB</span>
-        <audio controls><source src="./audio/ue5/" type="audio/wav"></audio>
-</div>
-<br>
-<p>1b)  Bei welcher Verstärkung wird eine Verzerrung wahrnehmbar?</p>
-<p>wahrnehmbar werdende Verzerrung ab 9 dB. </p> 
+		<p>
+			1c) Teil 1: 1kHz-Sinusschwingung um die Verstärkung 3, 6 und 9dB:
+		</p>
 
+		<div class="card-container">
+			<span>um 6 dB</span>
+			<audio controls>
+				<source
+					src="./audio/ue5/sine_1k_06_v_6.mp3"
+					type="audio/wav"
+				/>
+			</audio>
+		</div>
+		<div class="card-container">
+			<span>um 9 dB</span>
+			<audio controls>
+				<source
+					src="./audio/ue5/sine_1k_06_v_9.mp3"
+					type="audio/wav"
+				/>
+			</audio>
+		</div>
+		<div class="card-container">
+			<span>um 12 dB</span>
+			<audio controls>
+				<source
+					src="./audio/ue5/sine_1k_06_v_12.mp3"
+					type="audio/wav"
+				/>
+			</audio>
+		</div>
+		<p>1c) Teil 2: Klirrfaktor berechnen:</p>
 
-<p>1c) Teil 1: 1kHz-Sinusschwingung um die Verstärkung 3, 6 und 9dB:</p>
+		<div>
+			Allgemeine Formel: Klirrfaktor = sqrt((Oberwellen_ohne_Grundton²)
+			/ (Oberwellen_mit_Grundton²))
+		</div>
+		<br />
+		<h3><b>Aufgabe 2</b></h3>
+		<div><b> Echo</b></div>
+		<p>2a) Echo mit einer Verzögerung von 10, 100 und 200ms:</p>
+		<p>Code:</p>
+		<div>
+			//Echo <br />
+			short [] new_sound = new short [samples];<br />
+			// double t = 0.01; // 10 ms t = 0.1; // 100 ms t = 0.2; // 200
+			ms <br />
+			<br />
+			int fa = 44100;<br />
+			double N = t * fa;<br />
+			for(int k = 0; k < samples; k++){<br />
+			if (k >= N ){<br />
+			new_sound[k] = (short) (0.5 * readWavFile.sound[k] + 0.6 *
+			(readWavFile.sound[k - (int) N]));<br />
+			} else {<br />
+			new_sound[k] = readWavFile.sound[k];<br />
+			}<br />
+			}<br />
+		</div>
 
-<div class="card-container">
-        <span>um 3 dB</span>
-        <audio controls><source src="./audio/ue5" type="audio/wav"></audio>
-</div>
- <div class="card-container">
-        <span>um 6 dB</span>
-        <audio controls><source src="./audio/ue5" type="audio/wav"></audio>
-</div>
-<div class="card-container">
-        <span>um 9 dB</span>
-        <audio controls><source src="./audio/ue5/" type="audio/wav"></audio>
-</div>
-<p>1c)  Teil 2: Klirrfaktor berechnen:</p>
+		<div>
+			Um wie viele Abtastwerte N müssen wir verzögern, wenn wir mit
+			einer Abtastrate von 44.1 kHz arbeiten?
+		</div>
+		<div>
+			Es gilt: N = t * fa, somit N = t * 44.100 Demnach muss bei einer
+			Verz&ouml;gerung um 10 ms um 0.01 * 44.100 = 441 Abtastwerte
+			verz&ouml;gert werden. Bei 100 ms muss um 4.410 und bei 200 ms um
+			8.820 Abtastwerte verz&auml;ert werden.
+		</div>
 
-<div>
-        Allgemeine Formel: Klirrfaktor = sqrt((Oberwellen_ohne_Grundton²) / (Oberwellen_mit_Grundton²))
-</div>
-<br>
-<h3><b>Aufgabe 2</b></h3>
-<div><b> Echo</b></div>
-<p>2a) Echo mit einer Verzögerung von 10, 100 und 200ms:</p>
-<p>Code:</p>
-<div>
-        //Echo <br>
-short [] new_sound = new short [samples];<br>
-// double t = 0.01; // 10 ms   t = 0.1; // 100 ms  t = 0.2; // 200 ms <br>
-<br>
-int fa = 44100;<br>
-double N = t * fa;<br>
-for(int k = 0; k < samples; k++){<br>
-  if (k >= N ){<br>
-   new_sound[k] = (short) (0.5 * readWavFile.sound[k] + 0.6 * (readWavFile.sound[k - (int) N]));<br>
-  } else {<br>
-   new_sound[k] = readWavFile.sound[k];<br>
-  }<br>
-}<br>
-</div>
+		<p>2b) Echo angewandt auf Sprach- und Musiksignal:</p>
 
-<div>Um wie viele Abtastwerte N müssen wir verzögern, wenn wir mit 
-        einer Abtastrate von 44.1 kHz arbeiten?</div>
-        <div>
-                Es gilt: N = t * fa, somit N = t * 44.100
-                Demnach muss bei einer Verz&ouml;gerung um 10 ms um 0.01 * 44.100 = 441 Abtastwerte verz&ouml;gert werden.
-                Bei 100 ms muss um 4.410 und bei 200 ms um 8.820 Abtastwerte verz&auml;ert werden.  
-        </div>
+		<div class="card-container">
+			<span>Sprache</span>
+			<audio controls>
+				<source src="./audio/ue5" type="audio/wav" />
+			</audio>
+		</div>
+		<div class="card-container">
+			<span>Musik</span>
+			<audio controls>
+				<source src="./audio/ue5" type="audio/wav" />
+			</audio>
+		</div>
 
-<p>2b) Echo angewandt auf Sprach- und Musiksignal:</p>
+		<br />
+		<h3><b>Aufgabe 3</b></h3>
+		<div><b> Einfaches Filtern</b></div>
+		<p>
+			z.B. mit der Zuordnungsvorschrift y(k) = 0.5 * x(k) + 0.45 *
+			x(k-1)
+		</p>
+		<p>Code:</p>
+		<div>
+			//Filter <br />
+			short [] new_sound = new short [samples];<br />
+			<br />
+			for(int k = 0; k < samples; k++){<br />
+			if (k >= 1 ){<br />
+			new_sound[k] = (short) ((0.5 * readWavFile.sound[k]) + (0.45 *
+			(readWavFile.sound[k - 1])));<br />
+			} else {<br />
+			new_sound[k] = readWavFile.sound[k];<br />
+			}<br />
+			}<br />
+			WavFile.write_wav(outFilename, numChannels, numFrames, validBits,
+			sampleRate, new_sound);<br />
+		</div>
 
-<div class="card-container">
-        <span>Sprache</span>
-        <audio controls><source src="./audio/ue5" type="audio/wav"></audio>
-</div>
- <div class="card-container">
-        <span>Musik</span>
-        <audio controls><source src="./audio/ue5" type="audio/wav"></audio>
-</div>
+		<p>3a) Vergleich der Musikdatei vor und nach der Filterung:</p>
+		<p>HighPass Filter >> y(k) = 0.5 * x(k) + 0.45 * x(k-1)</p>
+		<div class="card-container">
+			<span>Musik vor Filterung</span>
+			<audio controls>
+				<source src="./audio/ue5" type="audio/wav" />
+			</audio>
+		</div>
+		<div class="card-container">
+			<span>Musik nach Filterung</span>
+			<audio controls>
+				<source src="./audio/ue5" type="audio/wav" />
+			</audio>
+		</div>
+		<p>LowPass Filter >> y(k) = 0.5 * x(k) - 0.45 * x(k-1</p>
+		<div class="card-container">
+			<span>Musik vor Filterung</span>
+			<audio controls>
+				<source src="./audio/ue5" type="audio/wav" />
+			</audio>
+		</div>
+		<div class="card-container">
+			<span>Musik nach Filterung</span>
+			<audio controls>
+				<source src="./audio/ue5" type="audio/wav" />
+			</audio>
+		</div>
 
-<br>
-<h3><b>Aufgabe 3</b></h3>
-<div><b>  Einfaches Filtern</b></div>
-<p>  z.B. mit der Zuordnungsvorschrift
-        y(k) = 0.5 * x(k) + 0.45 * x(k-1)
-</p>
-<p>Code:</p>
-<div>//Filter <br>
-short [] new_sound = new short [samples];<br>
-<br>
-for(int k = 0; k < samples; k++){<br>
-  if (k >= 1 ){<br>
-    new_sound[k] = (short) ((0.5 * readWavFile.sound[k]) + (0.45 * (readWavFile.sound[k - 1])));<br>
-  } else {<br>
-    new_sound[k] = readWavFile.sound[k];<br>
-  }<br>
-}<br>
-WavFile.write_wav(outFilename, numChannels, numFrames, validBits, sampleRate, new_sound);<br>
-</div>
-
-<p>3a) Vergleich der Musikdatei vor und nach der Filterung:</p>
-<p>HighPass Filter >> y(k) = 0.5 * x(k) + 0.45 * x(k-1)</p>
-<div class="card-container">
-        <span>Musik vor Filterung</span>
-        <audio controls><source src="./audio/ue5" type="audio/wav"></audio>
-</div>
- <div class="card-container">
-        <span>Musik nach Filterung</span>
-        <audio controls><source src="./audio/ue5" type="audio/wav"></audio>
-</div>
-<p>LowPass Filter >> y(k) = 0.5 * x(k) - 0.45 * x(k-1</p>
-<div class="card-container">
-        <span>Musik vor Filterung</span>
-        <audio controls><source src="./audio/ue5" type="audio/wav"></audio>
-</div>
- <div class="card-container">
-        <span>Musik nach Filterung</span>
-        <audio controls><source src="./audio/ue5" type="audio/wav"></audio>
-</div>
-
-<p>3b) Testen der Filter beim Weißes Rauschen:</p>
-<div class="card-container">
-        <span>Noise ungefiltert</span>
-        <img src="./pics/ue5" class="img_w_100">
-</div>
-<div class="card-container">
-        <span>Noise HighPass</span>
-        <img src="./pics/ue5" class="img_w_100">
-</div>
-<div class="card-container">
-        <span>Noise LowPAss</span>
-        <img src="./pics/ue5" class="img_w_100">
-</div>
-
-</body>
+		<p>3b) Testen der Filter beim Weißes Rauschen:</p>
+		<div class="card-container">
+			<span>Noise ungefiltert</span>
+			<img src="./pics/ue5" class="img_w_100" />
+		</div>
+		<div class="card-container">
+			<span>Noise HighPass</span>
+			<img src="./pics/ue5" class="img_w_100" />
+		</div>
+		<div class="card-container">
+			<span>Noise LowPAss</span>
+			<img src="./pics/ue5" class="img_w_100" />
+		</div>
+	</body>
 </html>
