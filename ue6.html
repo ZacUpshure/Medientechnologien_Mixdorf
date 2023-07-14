@@ -157,7 +157,114 @@ private boolean isValidPixel(int x, int y, Image image) {<br>
 }  <br>      
 </p>
 <br>
-
+<h3>Aufgabe 3: Medianfilter</h3>
+<br>
+<p>
+Das Medianfilter reiht alle Pixelintensitäten im Filterkernel der Größe nach auf und gibt den
+Intensitätswert aus, der an der mittleren Position steht. Es wird oft zur Beseitigung von Kratzern oder
+punktförmigen Bildfehlern verwendet. Füge zunächst mit Paint deinem Flächenbild zehn „Fehler“
+hinzu, wie es in dem folgenden Beispiel zu sehen ist. Benutze dazu einen weißen Stift mit der
+Strichstärke 1 Pixel. Programmiere das Medianfilter für deine 3x3-Pixelmatrix und berechne das
+Ergebnisbild. 
+</p>
+<br>
+<p>
+PixelColor[][] newPicture = new PixelColor[bmp.image.getWidth()][bmp.image.getHeight()];<br>
+<br>
+for (int x = 0; x < bmp.image.getWidth(); x++) {<br>
+    for (int y = 0; y < bmp.image.getHeight(); y++) {<br>
+<br>
+        List<Integer> medianList = new ArrayList<>();<br>
+<br>
+        for (int i = -1; i < 2; i++) {<br>
+            for (int j = -1; j < 2; j++) {<br>
+                int kernelX = x + i;<br>
+                int kernelY = y + j;<br>
+<br>
+                if (isValidPixel(kernelX, kernelY, bmp.image)) {<br>
+                    medianList.add(bmp.image.getRgbPixel(kernelX, kernelY).r);<br>
+                } else {<br>
+                    medianList.add(0);<br>
+                }<br>
+            }<br>
+        }<br>
+<br>
+        Collections.sort(medianList);<br>
+<br>
+        int middle = medianList.get(4);<br>
+        middle = Math.max(0, Math.min(255, middle));<br>
+<br>
+        PixelColor middleColor = new PixelColor(middle, middle, middle);<br>
+        newPicture[x][y] = middleColor;<br>
+    }<br>
+}<br>
+<br>
+for (int x = 0; x < bmp.image.getWidth(); x++) {<br>
+    for (int y = 0; y < bmp.image.getHeight(); y++) {<br>
+        bmp.image.setRgbPixel(x, y, newPicture[x][y]);<br>
+    }<br>
+}<br>
+<br>
+// Hilfsmethode zur Überprüfung der Gültigkeit eines Pixels<br>
+private boolean isValidPixel(int x, int y, Image image) {<br>
+    return x >= 0 && y >= 0 && x < image.getWidth() && y < image.getHeight();<br>
+}<br>
+</p>
+            <h3>Aufgabe 4: Sobel-Filter</h3>
+            <br>
+<p>
+Das Sobel-Filter dient der Detektion von Kanten im Bild. Programmiere ein Sobel-Filter für die x- und
+ein Sobel-Filter für die y-Richtung und wende sie auf deine Bilder an! Die Matrizen für das SobelFilter finden sich im pdf zur Bildfilterung
+</p>
+<br>
+<p>
+        	PixelColor[][] newPicture = new PixelColor[bmp.image.getWidth()][bmp.image.getHeight()];<br>
+		<br>
+		for (int x = 0; x < bmp.image.getWidth(); x++) {<br>
+			for (int y = 0; y < bmp.image.getHeight(); y++) {<br>
+<br>
+				int middle = 0;<br>
+				int[][] kernel = new int[3][3];<br>
+//				int[][] sobel = {{1, 0, -1}, {2, 0, -2}, {1, 0, -1}};<br>
+				int[][] sobel = {{1, 2, 1}, {0, 0, 0}, {-1, -2, -1}};<br>
+				for (int i = -1; i < 2; i++) {<br>
+					for (int j = -1; j < 2; j++) {<br>
+<br>
+						if (!(x + i < 0) && !(y + j < 0) && !(x + i > bmp.image.getWidth() - 1) && !(y + j > bmp.image.getHeight() - 1)) {<br>
+<br>
+							int kernelX = x + i;<br>
+							int kernelY = y + j;<br>
+							kernel[i + 1][j + 1] = bmp.image.getRgbPixel(kernelX, kernelY).r;<br>
+						}<br>
+					}<br>
+				}<br>
+<br>
+<br>
+				for (int a = 0; a < 3; a++) {<br>
+					for (int b = 0; b < 3; b++) {<br>
+						middle += kernel[a][b] * sobel[a][b];<br>
+					}<br>
+				}<br>
+<br>
+				middle /= 8;<br>
+<br>
+				if (middle > 255) {<br>
+					middle = 255;<br>
+				}<br>
+				if (middle < 0) {<br>
+					middle = 0;<br>
+				}<br>
+				PixelColor middleColor = new PixelColor(middle, middle, middle);<br>
+				newPicture[x][y] = middleColor;<br>
+			}<br>
+		}<br>
+<br>
+		for(int x = 0; x < bmp.image.getWidth(); x++){<br>
+			for(int y = 0; y < bmp.image.getHeight(); y++){<br>
+				bmp.image.setRgbPixel(x,y,newPicture[x][y]);<br>
+			}<br>
+		}<br>
+</p>
 
 
 
