@@ -69,21 +69,25 @@ private boolean isValidPixel(int x, int y, Image image) {<br>
 }<br>
 </p>
 <br>
+	    original
 	    	<img
 		class="img_w_50"
 		src="./pics/ueb6/naturey.bmp"
 		alt="kaputt"
 		/>
+	    	Mittelwertfilter
 	    	<img
 		class="img_w_50"
 		src="./pics/ueb6/naturey3x3.bmp"
 		alt="kaputt"
 		/>
+	    original
 	    	<img
 		class="img_w_50"
 		src="./pics/ueb6/manmadey.bmp"
 		alt="kaputt"
 		/>
+	    	Mittelwertfilter
 	    	<img
 		class="img_w_50"
 		src="./pics/ueb6/manmadey3x3.bmp"
@@ -177,31 +181,37 @@ private boolean isValidPixel(int x, int y, Image image) {<br>
     return x >= 0 && y >= 0 && x < image.getWidth() && y < image.getHeight();<br>
 }  <br>      
 </p>
+	    original
 	    	<img
 		class="img_w_50"
 		src="./pics/ueb6/naturey.bmp"
 		alt="kaputt"
 		/>
+	    Gradientfilter
 	    	<img
 		class="img_w_50"
 		src="./pics/ueb6/natureygrad.bmp"
 		alt="kaputt"
 		/>
+	    Gradientfilter Differenzbild
 	    	<img
 		class="img_w_50"
 		src="./pics/ueb6/natureygradientdiff.bmp"
 		alt="kaputt"
 		/>
+	    original
 	    	<img
 		class="img_w_50"
 		src="./pics/ueb6/manmadey.bmp"
 		alt="kaputt"
 		/>
+	    Gradientfilter
 	    	<img
 		class="img_w_50"
 		src="./pics/ueb6/manmadeygrad.bmp"
 		alt="kaputt"
 		/>
+	    Gradientfilter Differenzbild
 	    	<img
 		class="img_w_50"
 		src="./pics/ueb6/manmadeygradientdiff.bmp"
@@ -249,21 +259,25 @@ for (int x = 0; x < bmp.image.getWidth(); x++) {<br>
         newPicture[x][y] = middleColor;<br>
     }<br>
 }<br>
+		    Fehler
 		<img
 		class="img_w_50"
 		src="./pics/ueb6/natureydestroyed.bmp"
 		alt="kaputt"
 		/>
+		    Fehler behoben
 		<img
 		class="img_w_50"
 		src="./pics/ueb6/natureyrepaired.bmp"
 		alt="kaputt"
 		/>
+		    Fehler
 		<img
 		class="img_w_50"
 		src="./pics/ueb6/manmadeydestroyed.bmp"
 		alt="kaputt"
 		/>
+		    Fehler behoben
 		<img
 		class="img_w_50"
 		src="./pics/ueb6/manmadeyrepaired.bmp"
@@ -336,32 +350,37 @@ ein Sobel-Filter für die y-Richtung und wende sie auf deine Bilder an! Die Matr
 			}<br>
 		}<br>
 </p>
+		original
 		<img
 		class="img_w_50"
 		src="./pics/ueb6/naturey.bmp"
 		alt="kaputt"
 		/>
+		Sobelfilter horizontal
 		<img
 		class="img_w_50"
 		src="./pics/ueb6/natureysobelhorizontal.bmp"
 		alt="kaputt"
 		/>
+		Sobelfilter vertikal
 		<img
 		class="img_w_50"
 		src="./pics/ueb6/natureysobelvertikal.bmp"
 		alt="kaputt"
 		/>
-			
+		original
 		<img
 		class="img_w_50"
 		src="./pics/ueb6/manmadey.bmp"
 		alt="kaputt"
 		/>
+		Sobelfilter horizontal
 		<img
 		class="img_w_50"
 		src="./pics/ueb6/manmadeysobelhorizontal.bmp"
 		alt="kaputt"
 		/>
+		Sobelfilter vertikal
 		<img
 		class="img_w_50"
 		src="./pics/ueb6/manmadeysobelvertikal.bmp"
