@@ -21,8 +21,145 @@
 <h2>Uebung 6</h2>
 <h3><b>Aufgabe 1</b></h3>
 <div><b></b></div>
-<p>Text kurzinfo Aufgabe:</p>
+<p>a. Erweitere bmp_io so, dass ein Filter mit einem Kernel von 3x3 Pixeln angewandt werden kann.
+Beim Mittelwertfilter wird ein Zielpixel aus dem Mittelwert aller Pixel im Kernel im Originalbild
+berechnet. Beschreibe die Wirkung des Filters auf deine Bilder!</p>
 <br>
+<p>Lösung: </p>
+<br>
+<p>
+Verlust von Schärfe und Details: Da der Mittelwertfilter die Informationen 
+im Kernel reduziert, kann es zu einem Verlust an Schärfe und feinen 
+Details im Bild kommen. Dies geschieht, weil die resultierenden Pixelwerte 
+durch den Durchschnitt der umliegenden Pixelwerte beeinflusst werden und 
+dadurch Details verwischt werden können.</p>
+<br>
+<p>
+PixelColor[][] newPicture = new PixelColor[bmp.image.getWidth()][bmp.image.getHeight()];<br>
+<br>
+for (int x = 0; x < bmp.image.getWidth(); x++) {<br>
+    for (int y = 0; y < bmp.image.getHeight(); y++) {<br>
+        int sum = 0;<br>
+        int count = 0;<br>
+        for (int i = -1; i < 2; i++) {<br>
+            for (int j = -1; j < 2; j++) {<br>
+                int neighborX = x + i;<br>
+                int neighborY = y + j;<br>
+                if (isValidPixel(neighborX, neighborY, bmp.image)) {<br>
+                    sum += bmp.image.getRgbPixel(neighborX, neighborY).r;<br>
+                    count++;<br>
+                }<br>
+            }<br>
+        }<br>
+        int average = count > 0 ? sum / count : 0;<br>
+        PixelColor averageColor = new PixelColor(average, average, average);<br>
+        newPicture[x][y] = averageColor;<br>
+    }<br>
+}<br>
+<br>
+for (int x = 0; x < bmp.image.getWidth(); x++) {<br>
+    for (int y = 0; y < bmp.image.getHeight(); y++) {<br>
+        bmp.image.setRgbPixel(x, y, newPicture[x][y]);<br>
+    }<br>
+}<br>
+<br>
+// Hilfsmethode zur Überprüfung der Gültigkeit eines Pixels<br>
+private boolean isValidPixel(int x, int y, Image image) {<br>
+    return x >= 0 && y >= 0 && x < image.getWidth() && y < image.getHeight();<br>
+}<br>
+</p>
+<br>
+´<p>
+     b. Wie verfährt man bei der Berechnung des Filters mit den Randpixeln?               
+</p>
+<br>
+<p>Lösung: </p>
+<br>
+<p>
+        Randpixel ignorieren: Bei dieser Methode werden die Randpixel 
+        einfach ignoriert und nicht in die Berechnung einbezogen. 
+        Das bedeutet, dass die Schleifen für i und j bei -1 beginnen 
+        und bei +1 enden, anstatt bei -1 zu starten und bei +2 zu enden. 
+        Dadurch wird der Filter nur auf die inneren Pixel angewendet, 
+        während die Randpixel unverändert bleiben.               
+</p>
+<br>
+<h3>Aufgabe 2: Gradientenfilter</h3>
+<br>
+<p>
+a. Wende nun den folgenden 3*3 Kernel auf deine Bilder an! Beachte dabei, dass bei der direkten
+Anwendung der Vorschrift Werte > 255 entstehen können. Durch welchen Wert muss also die
+Intensität des Zielpixels geteilt werden, damit man wieder in den erlaubten Bereich 0…255 kommt?
+Beschreibe die Wirkung des Filters auf deine Bilder!              
+</p>
+<br>
+<p>Lösung: </p>
+<br>
+<p>Die Wirkung des Filters auf die Bilder hängt von der spezifischen Gewichtungsmatrix des Kernels ab. 
+Je nach Gewichtungsmatrix kann der Filter verschiedene Effekte haben, wie zum Beispiel Glättung, 
+        Schärfung, Kantenerkennung oder Rauschreduzierung. Ohne die genaue Gewichtungsmatrix des 
+        Kernels kann ich jedoch keine spezifischen Auswirkungen auf Ihre Bilder beschreiben.</p>
+<br>
+<p>
+0  -2  0 <br>
+-2 12 -2 <br>
+0  -2  0 <br>
+<br>
+bei 0-2+0-2+12-2+0-2+0 = Teiler = 4.
+</p>
+<br>
+<p>
+PixelColor[][] newPicture = new PixelColor[bmp.image.getWidth()][bmp.image.getHeight()];<br>
+
+for (int x = 0; x < bmp.image.getWidth(); x++) {<br>
+    for (int y = 0; y < bmp.image.getHeight(); y++) {<br>
+        int middle = 0;<br>
+        int validNeighbors = 0;<br>
+        <br>
+        for (int i = -1; i < 2; i++) {<br>
+            for (int j = -1; j < 2; j++) {<br>
+                int neighborX = x + i;<br>
+                int neighborY = y + j;<br>
+                <br>
+                if (isValidPixel(neighborX, neighborY, bmp.image)) {<br>
+                    if ((i == -1 && j != 0) || (i == 1 && j != 0)) {<br>
+                        middle += bmp.image.getRgbPixel(neighborX, neighborY).r * 0;<br>
+                    } else if (i == 0 && j == 0) {<br>
+                        middle += bmp.image.getRgbPixel(neighborX, neighborY).r * 12;<br>
+                    } else {<br>
+                        middle += bmp.image.getRgbPixel(neighborX, neighborY).r * -2;<br>
+                    }<br>
+                    <br>
+                    validNeighbors++;<br>
+                }<br>
+            }<br>
+        }<br>
+        <br>
+        middle /= validNeighbors;<br>
+        <br>
+        // Normalizing the value to the range 0-255<br>
+        middle = Math.max(0, Math.min(255, middle));<br>
+        <br>
+        PixelColor middleColor = new PixelColor(middle, middle, middle);<br>
+        newPicture[x][y] = middleColor;<br>
+    }<br>
+}<br>
+<br>
+for (int x = 0; x < bmp.image.getWidth(); x++) {<br>
+    for (int y = 0; y < bmp.image.getHeight(); y++) {<br>
+        bmp.image.setRgbPixel(x, y, newPicture[x][y]);<br>
+    }<br>
+}<br>
+<br>
+// Hilfsmethode zur Überprüfung der Gültigkeit eines Pixels<br>
+private boolean isValidPixel(int x, int y, Image image) {<br>
+    return x >= 0 && y >= 0 && x < image.getWidth() && y < image.getHeight();<br>
+}  <br>      
+</p>
+<br>
+
+
+
 
 </body>
 </html>
